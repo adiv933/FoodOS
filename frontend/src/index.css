@@ -4,7 +4,6 @@
 
 * {
     font-family: "Poppins", sans-serif;
-
 }
 
 .rightCard {
@@ -39,4 +38,9 @@
 
 .logos:hover .logos-slide {
     animation-play-state: paused;
+}
+
+.active {
+    background-color: red;
+    font-weight: bold;
 }

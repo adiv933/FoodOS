@@ -24,7 +24,7 @@ const images = [
 
 const HeroImageAutoplay = () => {
   return (
-    <div className="mt-8 p-8 bg-gray-200 rounded-md">
+    <div className="mt-8 p-8 bg-zinc-50 rounded-md">
       <h1 className="text-xl font-semibold">What's on your mind?</h1>
       <div className="logos py-4 overflow-hidden relative">
         <div className="logos-slide flex">
@@ -32,19 +32,19 @@ const HeroImageAutoplay = () => {
             <img
               src={image.url}
               key={index}
-              className="w-40 h-52 mx-4 rounded-md hover:-translate-y-2 duration-200"
+              className="w-44 h-52 mx-4 rounded-md hover:-translate-y-2 hover:shadow-lg hover:border-2 hover:border-amber-200 duration-200"
             />
           ))}
           {images.map((image, index) => (
             <img
               src={image.url}
               key={index}
-              className="w-40 h-52 mx-4 rounded-md hover:-translate-y-2 duration-200"
+              className="w-44 h-52 mx-4 rounded-md hover:-translate-y-2 hover:shadow-sm hover:shadow-amber-200 duration-200"
             />
           ))}
         </div>
-        <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-gray-200 to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 top-4 w-40 h-52 bg-gradient-to-l from-gray-200 to-transparent"></div>
+        <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-zinc-50 to-transparent"></div>
+        <div className="absolute inset-y-0 right-0 top-4 w-40 h-52 bg-gradient-to-l from-zinc-50 to-transparent"></div>
       </div>
     </div>
   );

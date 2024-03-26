@@ -16,7 +16,7 @@ const RestoCardView = () => {
 
 export default function HeroResto() {
   return (
-    <div className="bg-gray-200 rounded-md mt-12 p-8">
+    <div className="bg-amber-300 rounded-md mt-12 p-8">
       <h1 className="text-xl font-semibold">
         Top restuarant chains in Manipal
       </h1>

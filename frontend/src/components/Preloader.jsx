@@ -7,7 +7,7 @@ export default function Preloader() {
   }, []);
 
   return (
-    <div className="preloader w-full h-screen flex justify-center items-center bg-black text-white fixed top-0 bottom-0 right-0 z-50 overflow-hidden">
+    <div className="preloader w-full h-screen flex justify-center items-center bg-amber-400 text-black font-semibold fixed top-0 bottom-0 right-0 z-50 overflow-hidden">
       <div className="texts-container flex justify-between items-center w-96 h-20 text-2xl overflow-hidden">
         <span>FOODOS</span>
         <span>|</span>
