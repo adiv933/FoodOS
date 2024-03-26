@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    font-family: "Poppins", sans-serif;
+
+}
+
+.rightCard {
+    backdrop-filter: blur(20px) saturate(112%);
+    -webkit-backdrop-filter: blur(20px) saturate(112%);
+    background-color: rgba(255, 255, 255, 0.70);
+    border: 1px solid rgba(255, 255, 255, 0.125);
+}
+
+@keyframes slide {
+    0% {
+        margin-left: 0;
+    }
+
+    100% {
+        margin-left: -100%;
+    }
+}
+
+.logo {
+    white-space: nowrap;
+}
+
+.logos-slide {
+    display: flex;
+    animation: slide 35s linear infinite;
+}
+
+.logos-slide img {
+    flex-shrink: 0;
+}
+
+.logos:hover .logos-slide {
+    animation-play-state: paused;
+}
