@@ -9,12 +9,8 @@ function Home() {
     <div className="w-full h-screen bg-[url('../../public/assets/bg-curves.png')] bg-no-repeat bg-top">
       <Preloader />
       <Navbar />
-      <div className="w-[75%] mx-auto">
+      <div className="w-[80%] mx-auto">
         <HeroImageAutoplay />
-        <HeroResto />
-        <HeroResto />
-        <HeroResto />
-        <HeroResto />
         <HeroResto />
       </div>
       <Footer />

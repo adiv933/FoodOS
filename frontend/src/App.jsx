@@ -17,7 +17,7 @@ export default function App() {
       <Route path="/restos" element={<Restos />} />
       <Route path="/tracking" element={<Tracking />} />
       <Route path="/profile" element={<Profile />} />
-      <Route path="*" element={<Login />} />
+      <Route path="*" element={<Home />} />
     </Routes>
   );
 }

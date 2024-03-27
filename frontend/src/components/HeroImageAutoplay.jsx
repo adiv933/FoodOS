@@ -25,7 +25,7 @@ const images = [
 const HeroImageAutoplay = () => {
   return (
     <div className="mt-8 p-8 bg-zinc-50 rounded-md">
-      <h1 className="text-xl font-semibold">What's on your mind?</h1>
+      <h1 className="text-2xl font-semibold">What's on your mind?</h1>
       <div className="logos py-4 overflow-hidden relative">
         <div className="logos-slide flex">
           {images.map((image, index) => (
