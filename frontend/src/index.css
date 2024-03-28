@@ -6,6 +6,16 @@
     font-family: "Poppins", sans-serif;
 }
 
+html {
+    background-image: url("../public/assets/bg-curves.png");
+    background-position: top;
+    background-repeat: no-repeat;
+}
+
+.footerCurves {
+    background-image: url("../public/assets/footerCurves.svg");
+}
+
 .rightCard {
     backdrop-filter: blur(20px) saturate(112%);
     -webkit-backdrop-filter: blur(20px) saturate(112%);

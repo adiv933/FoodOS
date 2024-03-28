@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <div className="overflow-hidden">
-      <div className="w-screen h-[600px] bg-[url('../../public/assets/footer-animated-curves.svg')] bg-no-repeat bg-left-bottom "></div>
+      <div className="w-screen h-[600px] bg-no-repeat bg-left-bottom footerCurves"></div>
       <div className="bg-amber-400 w-full h-72">
         <div className="w-[75%] h-72 mx-auto flex justify-between ">
           <div className="flex-col p-2 w-fit">
