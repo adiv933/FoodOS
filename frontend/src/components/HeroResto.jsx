@@ -15,6 +15,7 @@ import pizza1 from "../../public/assets/restos/pizza1.jpeg";
 
 const restaurants = [
   {
+    id: crypto.randomUUID(),
     name: "The Sweet Spot Bakery",
     address: "1 Bakery Street, Manipal, Karnataka, India",
     contact: "+91 1234567890",
@@ -23,6 +24,7 @@ const restaurants = [
     rating: 3.9,
   },
   {
+    id: crypto.randomUUID(),
     name: "Spice Junction",
     address: "9 Spice Market, Manipal, Karnataka, India",
     contact: "+91 1234432112",
@@ -31,6 +33,7 @@ const restaurants = [
     rating: 4.6,
   },
   {
+    id: crypto.randomUUID(),
     name: "Tandoori Terrace",
     address: "10 Tandoori Lane, Manipal, Karnataka, India",
     contact: "+91 9988776655",
@@ -39,6 +42,7 @@ const restaurants = [
     rating: 1.9,
   },
   {
+    id: crypto.randomUUID(),
     name: "SpeedyBites",
     address: "4 Fast Lane, Manipal, Karnataka, India",
     contact: "+91 8899776655",
@@ -47,6 +51,7 @@ const restaurants = [
     rating: 5.0,
   },
   {
+    id: crypto.randomUUID(),
     name: "QuickBite Burgers",
     address: "3 Fast Food Corner, Manipal, Karnataka, India",
     contact: "+91 9988776655",
@@ -55,6 +60,7 @@ const restaurants = [
     rating: 4.5,
   },
   {
+    id: crypto.randomUUID(),
     name: "Noodle Haven",
     address: "7 Ramen Street, Manipal, Karnataka, India",
     contact: "+91 5544332211",
@@ -63,6 +69,7 @@ const restaurants = [
     rating: 4.0,
   },
   {
+    id: crypto.randomUUID(),
     name: "Flourish Bakery",
     address: "2 Bakers Lane, Manipal, Karnataka, India",
     contact: "+91 9876543210",
@@ -71,6 +78,7 @@ const restaurants = [
     rating: 3.3,
   },
   {
+    id: crypto.randomUUID(),
     name: "Crunchy Cravings",
     address: "5 Foodie Plaza, Manipal, Karnataka, India",
     contact: "+91 7766554433",
@@ -79,6 +87,7 @@ const restaurants = [
     rating: 4.2,
   },
   {
+    id: crypto.randomUUID(),
     name: "Pizza Paradise",
     address: "6 Pizza Tower, Manipal, Karnataka, India",
     contact: "+91 6655443322",
@@ -87,6 +96,7 @@ const restaurants = [
     rating: 4.7,
   },
   {
+    id: crypto.randomUUID(),
     name: "Ramen Rendezvous",
     address: "8 Noodle Lane, Manipal, Karnataka, India",
     contact: "+91 3322114455",
@@ -95,6 +105,7 @@ const restaurants = [
     rating: 3.5,
   },
   {
+    id: crypto.randomUUID(),
     name: "Curry Kingdom",
     address: "11 Curry Corner, Manipal, Karnataka, India",
     contact: "+91 8877665544",
@@ -103,6 +114,7 @@ const restaurants = [
     rating: 4.5,
   },
   {
+    id: crypto.randomUUID(),
     name: "Naan Nook",
     address: "12 Naan Street, Manipal, Karnataka, India",
     contact: "+91 7766889955",
@@ -117,7 +129,7 @@ const RestoCard = ({ resto }) => {
     <Link to={`/restaurant/${resto.id}`} className="hover:no-underline">
       {" "}
       {/* Use Link to wrap the RestoCard */}
-      <div className="w-80 h-96 rounded-md mb-8 transition-transform hover:scale-105 hover:-translate-y-2 hover:shadow-xl hover:border-2 hover:border-black duration-200  bg-white overflow-hidden">
+      <div className="w-80 h-96 rounded-md mb-8 transition-transform hover:scale-105 hover:-translate-y-2 hover:shadow-xl duration-200  bg-zinc-100 overflow-hidden">
         <div className="h-2/3 bg-amber-400 overflow-hidden relative">
           <img
             src={resto.url}
