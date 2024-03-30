@@ -10,7 +10,7 @@ function Home() {
     <div className="w-full h-screen bg-no-repeat bg-top">
       <Preloader />
       <Navbar />
-      <div className="w-[80%] mx-auto">
+      <div className="w-[90%] mx-auto">
         <HeroImageAutoplay />
         <HeroResto />
       </div>

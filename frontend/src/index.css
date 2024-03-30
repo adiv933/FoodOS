@@ -42,7 +42,7 @@ html {
     animation: slide 35s linear infinite;
 }
 
-.logos-slide img {
+.logos-slide a {
     flex-shrink: 0;
 }
 
