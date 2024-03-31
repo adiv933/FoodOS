@@ -15,54 +15,42 @@ app.listen((port), () => {
     console.log(`listening to port ${port}`)
 });
 
-app.get('/home', (req, res) => {
-    async function getRestoData() {
-        try {
-            const connection = await oracledb.getConnection({
-                user: myuser,
-                password: mypw,
-                connectString: "localhost:1521/XEPDB1"
-            });
 
-            const result = await connection.execute(`SELECT * FROM restaurants`);
-            // console.log(result.rows);
+app.get('/home', async (req, res) => {
+    try {
+        const connection = await oracledb.getConnection({
+            user: myuser,
+            password: mypw,
+            connectString: "localhost:1521/XEPDB1"
+        });
 
-            return result;
+        const result = await connection.execute(`SELECT * FROM restaurants`);
 
-        } catch (err) {
-            return err;
-        }
+        console.log("All restaurants data sent from server.");
+
+        return res.send(result.rows);
+
+    } catch (err) {
+        console.log(err);
     }
-
-    getRestoData().then((data) => {
-        res.send(data);
-    }).catch(err => res.send(err))
-
 })
 
-// app.get('/restaurant/:id', (req, res) => {
-//     const { id } = req.params;
-//     async function getRestoData() {
-//         try {
-//             const connection = await oracledb.getConnection({
-//                 user: myuser,
-//                 password: mypw,
-//                 connectString: "localhost:1521/XEPDB1"
-//             });
+app.get('/restaurant/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const connection = await oracledb.getConnection({
+            user: myuser,
+            password: mypw,
+            connectString: "localhost:1521/XEPDB1"
+        });
 
-//             const result = await connection.execute(`SELECT * FROM restaurants WHERE restaurant_id = :id`, [id]);
-//             console.log(result.rows);
-//             console.log(`ID is ${id}`);
+        const result = await connection.execute(`SELECT * FROM restaurants WHERE restaurant_id = :id`, [id]);
+        // console.log(result.rows);
+        // console.log(`ID is ${id}`);
 
-//             return result;
+        return res.json(result.rows[0]);
 
-//         } catch (err) {
-//             return err;
-//         }
-//     }
-
-//     getRestoData().then((data) => {
-//         res.send(data);
-//     }).catch(err => res.send(err))
-// });
-
+    } catch (err) {
+        console.log(err);
+    }
+});

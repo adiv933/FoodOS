@@ -3,12 +3,11 @@ import HeroImageAutoplay from "../components/HeroImageAutoplay";
 import HeroResto from "../components/HeroResto";
 import Preloader from "../components/Preloader";
 import Footer from "../components/Footer";
-// import bg-curves from "../../public/assets/bg-curves.png";
 
 function Home() {
   return (
     <div className="w-full h-screen bg-no-repeat bg-top">
-      <Preloader />
+      {/* <Preloader /> */}
       <Navbar />
       <div className="w-[90%] mx-auto">
         <HeroImageAutoplay />
