@@ -28,7 +28,7 @@ export default function Navbar() {
               <button
                 className={
                   location.pathname === "/checkout"
-                    ? "px-4 py-3 bg-orange-400 text-white rounded-md"
+                    ? "px-4 py-3 bg-amber-500 text-white rounded-md"
                     : "px-4 py-3 bg-amber-400 text-white rounded-md hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
                 }
               >
@@ -40,7 +40,7 @@ export default function Navbar() {
               <button
                 className={
                   location.pathname === "/profile"
-                    ? "px-4 py-3 bg-orange-400 text-white rounded-md"
+                    ? "px-4 py-3 bg-amber-500 text-white rounded-md"
                     : "px-4 py-3 bg-amber-400 text-white rounded-md hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
                 }
               >

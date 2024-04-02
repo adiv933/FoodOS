@@ -64,7 +64,7 @@ const Cart = ({ name, mobile, address, paymentOption }) => {
           </div>
         ))}
       </div>
-      <div className="p-2 mb-8 bg-zinc-100 rounded-md">
+      <div className="p-2 mb-8 bg-white rounded-md">
         <h2 className="text-xl font-semibold mb-2 ">Final Summary</h2>
         {name && (
           <p>

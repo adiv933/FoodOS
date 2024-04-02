@@ -57,7 +57,7 @@ const Checkout = () => {
         </div>
 
         {/* Right Section */}
-        <div className="w-[40%] p-4 bg-amber-300 overflow-x-hidden overflow-y-auto">
+        <div className="w-[40%] p-4 bg-blur1 overflow-x-hidden overflow-y-auto">
           <Cart
             name={name}
             mobile={mobile}

@@ -59,7 +59,7 @@ export default function HeroResto() {
   }, []);
 
   return (
-    <div className="bg-amber-300 rounded-md p-8 pb-20">
+    <div className="bg-amber-300 rounded-md p-8 pb-20 bg-blur2">
       <h1 className="text-2xl font-semibold mb-8">
         Top restuarant chains in Manipal
       </h1>

@@ -5,6 +5,8 @@ const port = 4000;
 const oracledb = require('oracledb');
 oracledb.outFormat = oracledb.OUT_FORMAT_OBJECT;
 const cors = require('cors');
+const { v4: uuidv4 } = require('uuid');
+
 app.use(cors());
 app.use(express.json())
 
@@ -26,7 +28,7 @@ app.get('/home', async (req, res) => {
 
         const result = await connection.execute(`SELECT * FROM restaurants`);
 
-        console.log("All restaurants data sent from server.");
+        console.log("All restaurant data sent from server.");
 
         return res.send(result.rows);
 
@@ -52,5 +54,28 @@ app.get('/restaurant/:id', async (req, res) => {
 
     } catch (err) {
         console.log(err);
+        res.redirect('/home');
     }
 });
+
+app.get('/restaurant/:id/menu', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const connection = await oracledb.getConnection({
+            user: myuser,
+            password: mypw,
+            connectString: "localhost:1521/XEPDB1"
+        });
+
+        const result = await connection.execute(`SELECT name, rating, price FROM dishes WHERE MENU_ID = :id`, [id]);
+        console.log(result.rows);
+        // console.log(`ID is ${id}`);
+
+        return res.json(result.rows);
+
+    } catch (err) {
+        console.log(err);
+        res.redirect('/home');
+    }
+});
+

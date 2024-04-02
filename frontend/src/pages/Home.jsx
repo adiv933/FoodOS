@@ -3,8 +3,12 @@ import HeroImageAutoplay from "../components/HeroImageAutoplay";
 import HeroResto from "../components/HeroResto";
 import Preloader from "../components/Preloader";
 import Footer from "../components/Footer";
+import { useEffect } from "react";
 
 function Home() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <div className="w-full h-screen bg-no-repeat bg-top">
       {/* <Preloader /> */}

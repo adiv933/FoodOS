@@ -16,13 +16,6 @@ html {
     background-image: url("../public/assets/footerCurves.svg");
 }
 
-.rightCard {
-    backdrop-filter: blur(20px) saturate(112%);
-    -webkit-backdrop-filter: blur(20px) saturate(112%);
-    background-color: rgba(255, 255, 255, 0.70);
-    border: 1px solid rgba(255, 255, 255, 0.125);
-}
-
 @keyframes slide {
     0% {
         margin-left: 0;
@@ -50,7 +43,15 @@ html {
     animation-play-state: paused;
 }
 
-.active {
-    background-color: red;
-    font-weight: bold;
+.bg-blur1 {
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    background-color: rgba(212, 212, 216, 0.269);
+    border: 2px solid rgba(0, 0, 0, 0.095);
+}
+
+.bg-blur2 {
+    backdrop-filter: blur(16px) saturate(150%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    border: 2px solid rgba(0, 0, 0, 0.095);
 }

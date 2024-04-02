@@ -25,7 +25,7 @@ const images = [
 
 const HeroImageAutoplay = () => {
   return (
-    <div className="mt-8 p-8 bg-zinc-100 rounded-md mb-12">
+    <div className="mt-8 p-8 bg-zinc-100 rounded-md mb-12 bg-blur1">
       <h1 className="text-2xl font-semibold">What's on your mind?</h1>
       <div className="logos py-4 overflow-hidden relative">
         <div className="logos-slide flex">
@@ -54,8 +54,8 @@ const HeroImageAutoplay = () => {
             </Link>
           ))}
         </div>
-        <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-zinc-100 to-transparent"></div>
-        <div className="absolute inset-y-0 right-0 top-4 w-40 h-52 bg-gradient-to-l from-zinc-100 to-transparent"></div>
+        {/* <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-zinc-100 to-transparent"></div>
+          <div className="absolute inset-y-0 right-0 top-4 w-40 h-52 bg-gradient-to-l from-zinc-100 to-transparent"></div> */}
       </div>
     </div>
   );
