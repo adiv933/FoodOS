@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 function Order() {
   return (
-    <div className="border-2 p-2 h-fit my-4 rounded-md">
+    <div className="border-2 p-2 h-fit my-4 rounded">
       <p>order #</p>
       <p>date</p>
       <p>price</p>
@@ -22,7 +22,7 @@ export default function Profile() {
   return (
     <div className="w-full h-screen bg-no-repeat bg-top ">
       <Navbar />
-      <div className="flex w-[90%] h-[75%] mx-auto rounded-lg overflow-hidden shadow-md">
+      <div className="flex w-[90%] h-[75%] mx-auto rounded overflow-hidden shadow-md">
         <div className="flex flex-col w-1/4 bg-blur2 py-4 pl-4 ">
           {/* User image */}
           <div className="p-4 mb-8 mr-4">
@@ -89,7 +89,7 @@ export default function Profile() {
               </div>
               <div className="flex flex-row-reverse">
                 <Link to="/profile/edit">
-                  <button className="py-1 px-6 mt-32 bg-red-500 hover:bg-red-600   text-white rounded text-center">
+                  <button className="py-1 px-6 mt-32 hover:bg-gray-400 bg-gray-300 rounded text-center">
                     Edit Profile
                   </button>
                 </Link>
