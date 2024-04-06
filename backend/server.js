@@ -135,19 +135,27 @@ app.post('/register', async (req, res) => {
 });
 
 
-app.get('/login', async (req, res) => {
+app.post('/login', async (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
-    const query = `BEGIN fetchUserPassword(:name, :fetched_password); END;`;
-    result = await postQuery(query,
-        {
-            name: name,
-            fetched_password: { dir: oracledb.BIND_OUT, type: oracledb.STRING, maxSize: 40 },
+    try {
+        const query = `SELECT * FROM USERS WHERE name = :name`;
+        result = await getQuery(query,
+            {
+                name: name,
+            }
+        );
+        const fetched_password = result[0].PASSWORD;
+        const isValid = await bcrypt.compare(password, fetched_password)
+        console.log("User is valid:", isValid);
+        if (isValid) {
+            return res.json(result[0]);
         }
-    );
-
-    const isValid = await bcrypt.compare(password, fetched_password)
-
-    console.log(result);
-    console.log("User is valid:", isValid);
+        else {
+            return res.json([]);
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
 })

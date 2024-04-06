@@ -35,11 +35,11 @@ const MenuItem = ({ item }) => {
   };
 
   return (
-    <div className="flex items-center mb-4 px-4 border-2 rounded h-32">
+    <div className="flex items-center mb-4 px-4 border-2 rounded h-32 ">
       <img
         src={item.IMG_SRC}
         alt={item.NAME}
-        className="w-20 h-20 mr-8 rounded object-cover"
+        className="w-20 h-20 mr-8 rounded object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110 "
       />
       <div className="flex-grow">
         <h3 className="text-lg font-semibold">{item.NAME}</h3>
@@ -92,6 +92,11 @@ const Restaurant = () => {
   const [resto, setResto] = useState({});
   const [menuItems, setMenuItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [rating, setRating] = useState(resto.RATING);
+
+  const handleRatingChange = (newValue) => {
+    setRating((newValue + resto.RATING) / 2);
+  };
 
   const location = useLocation();
   const { id } = location.state;
@@ -148,19 +153,6 @@ const Restaurant = () => {
         "Loading..."
       ) : (
         <div className="w-[90%] mx-auto bg-white shadow-lg rounded overflow-hidden">
-          {/* <div className="relative mb-8 border-b-2">
-            <img
-              className="w-full h-96 object-cover object-center"
-              src={resto.IMG_SRC}
-              alt={resto.NAME}
-            />
-            <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent"></div>
-            <div className="absolute bottom-0 left-0 px-6 pb-4">
-              <h2 className="text-6xl font-semibold text-white">
-                {resto.NAME}
-              </h2>
-            </div>
-          </div> */}
           <div className="relative mb-8 border-b-2 overflow-hidden">
             <img
               className="w-full h-96 object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110"
@@ -202,10 +194,10 @@ const Restaurant = () => {
                   Rate this restaurant
                 </div>
                 <p className="block text-gray-700 text-lg font-bold mb-2">
-                  Current Rating: {resto.RATING}
+                  Current Rating: {rating || resto.RATING}
                 </p>
               </div>
-              <RatingSection />
+              <RatingSection onRatingChange={handleRatingChange} />
             </div>
             <div className="w-3/4 p-6 border-l border-gray-200">
               {/* Contact and address section */}

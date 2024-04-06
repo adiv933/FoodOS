@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import Snackbar from "@mui/material/Snackbar";
 import Fade from "@mui/material/Fade";
 import Slide from "@mui/material/Slide";
@@ -10,8 +11,8 @@ function SlideTransition(props) {
   return <Slide {...props} direction="up" />;
 }
 
-export default function RatingSection() {
-  const [value, setValue] = useState(2);
+export default function RatingSection({ onRatingChange }) {
+  const [value, setValue] = useState(0);
 
   const [state, setState] = useState({
     open: false,
@@ -30,6 +31,8 @@ export default function RatingSection() {
       ...state,
       open: false,
     });
+    console.log("Rating:", value);
+    onRatingChange(value);
   };
 
   return (
