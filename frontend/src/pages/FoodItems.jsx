@@ -16,7 +16,7 @@ export default function FoodItems() {
       .get(`http://localhost:4000/search/${desiredDishName}`)
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
+          // console.log(res);
           setData(res.data);
         }
       })

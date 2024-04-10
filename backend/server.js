@@ -106,7 +106,7 @@ app.get('/checkout', async (req, res) => {
     try {
         const query = 'SELECT o.ORDER_DETAIL_ID, d.NAME, o.SUBTOTAL_AMOUNT, o.QUANTITY FROM ORDER_DETAILS o, DISHES d WHERE o.DISH_ID = d.DISH_ID AND o.ORDER_ID = :order_id';
         const result = await getQuery(query, { order_id });
-        console.log((result))
+        // console.log((result))
         return res.json(result);
     } catch (err) {
         console.log(err);
@@ -115,7 +115,8 @@ app.get('/checkout', async (req, res) => {
 });
 
 app.get('/search/:q', async (req, res) => {
-    const { q } = req.params;
+    let { q } = req.params;
+    // q = q.substring(0, 1).toUpperCase() + q.substring(1).toLowerCase();
     try {
         const query = 'SELECT * FROM dishes WHERE name like :q';
         const binds = [`%${q}%`];
