@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function SearchBar() {
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleInputChange = (event) => {
@@ -11,6 +13,7 @@ export default function SearchBar() {
     event.preventDefault();
     console.log(searchQuery);
     setSearchQuery("");
+    navigate("/fooditems", { state: { dishName: searchQuery } });
   };
 
   return (

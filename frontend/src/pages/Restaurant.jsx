@@ -1,92 +1,12 @@
 /* eslint-disable react/prop-types */
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
+// import Preloader from "../components/Preloader";
+import MenuSection from "../components/MenuSection";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import RatingSection from "../components/RatingSection";
-import StarIcon from "@mui/icons-material/Star";
-import { yellow } from "@mui/material/colors";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import RemoveShoppingCartOutLinedIcon from "@mui/icons-material/RemoveShoppingCartOutLined";
-import Snackbar from "@mui/material/Snackbar";
-
-const MenuItem = ({ item }) => {
-  const [open, setOpen] = useState(false);
-  const [isAdded, setIsAdded] = useState(false);
-
-  const handleClick = () => {
-    handleAddToCart();
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  const handleAddToCart = () => {
-    // Simulate adding to cart functionality
-    setIsAdded(true);
-    console.log(`Added ${item.NAME} to cart`);
-  };
-
-  return (
-    <div className="flex items-center mb-4 px-4 border-2 rounded h-32 ">
-      <img
-        src={item.IMG_SRC}
-        alt={item.NAME}
-        className="w-20 h-20 mr-8 rounded object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110 "
-      />
-      <div className="flex-grow">
-        <h3 className="text-lg font-semibold">{item.NAME}</h3>
-        <p className="text-gray-600 flex gap-1">
-          Rating: {item.RATING}
-          <StarIcon sx={{ color: yellow[700] }} />
-        </p>
-      </div>
-      <div className="flex items-center">
-        <p className="text-gray-700 mr-4 font-semibold text-xl">
-          ₹{item.PRICE}{" "}
-        </p>
-        <button
-          className={`bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded ${
-            isAdded ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          onClick={handleClick}
-          disabled={isAdded}
-        >
-          {/* {isAdded ? "Added to Cart" : "Add to Cart" */}
-          {isAdded ? (
-            <RemoveShoppingCartOutLinedIcon />
-          ) : (
-            <AddShoppingCartIcon />
-          )}
-        </button>
-        <Snackbar
-          open={open}
-          autoHideDuration={2000}
-          onClose={handleClose}
-          message={`${item.NAME} was added to Cart`}
-        />
-      </div>
-    </div>
-  );
-};
-
-const MenuSection = ({ menuItems }) => {
-  return (
-    <div>
-      <h2 className="text-3xl font-semibold my-8 ">Menu</h2>
-      {menuItems.map((item, index) => (
-        <MenuItem key={index} item={item} />
-      ))}
-    </div>
-  );
-};
 
 const Restaurant = () => {
   const [resto, setResto] = useState({});
@@ -148,6 +68,12 @@ const Restaurant = () => {
 
   return (
     <div className="w-full h-screen bg-no-repeat bg-top">
+      {/* <Preloader>
+        <span>Loading</span>
+        <span>.</span>
+        <span>.</span>
+        <span>.</span>
+      </Preloader> */}
       <Navbar />
       {isLoading ? (
         "Loading..."
@@ -210,7 +136,7 @@ const Restaurant = () => {
                 </p>
               </div>
               {/* Menu section */}
-              <MenuSection menuItems={sortedMenuItems} />
+              <MenuSection menuItems={sortedMenuItems}>{"Menu"}</MenuSection>
             </div>
           </div>
         </div>

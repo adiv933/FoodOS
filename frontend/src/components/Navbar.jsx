@@ -1,13 +1,19 @@
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import SearchBar from "./SearchBar";
 import "../index.css";
-import { useLocation } from "react-router-dom";
-import Cart from "./Cart";
+import { useLocation, useNavigate } from "react-router-dom";
+import SearchBar from "./SearchBar";
+import Tooltip from "@mui/material/Tooltip";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import PersonIcon from "@mui/icons-material/Person";
 
 export default function Navbar() {
   const location = useLocation();
+  const isCheckoutPage = location.pathname === "/checkout";
   const isProfilePage = location.pathname === "/profile";
+  const navigate = useNavigate();
 
+  // console.log("NAVBAR:", userData);
   return (
     <div className="w-full h-20 flex items-center justify-between shadow-md px-8  mb-12">
       <Link to="/home">
@@ -25,21 +31,40 @@ export default function Navbar() {
         {location.pathname !== "/checkout" &&
           location.pathname !== "/profile" && <SearchBar />}
         <div className="flex gap-2.5 ml-0">
-          <Cart />
-          <Link to="/profile">
+          <Tooltip title="Cart" placement="bottom-start">
             <button
-              className={`px-4 py-3 bg-${
+              onClick={() => {
+                navigate("/checkout");
+              }}
+              className={`p-3 bg-${
+                isCheckoutPage ? "amber-500" : "amber-400"
+              } text-white rounded-md 
+            ${
+              isCheckoutPage
+                ? ""
+                : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
+            }`}
+            >
+              <ShoppingCartIcon />
+            </button>
+          </Tooltip>
+          <Tooltip title="Profile" placement="bottom-start">
+            <button
+              onClick={() => {
+                navigate("/profile");
+              }}
+              className={`p-3 bg-${
                 isProfilePage ? "amber-500" : "amber-400"
               } text-white rounded-md 
-        ${
-          isProfilePage
-            ? ""
-            : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
-        }`}
+            ${
+              isProfilePage
+                ? ""
+                : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
+            }`}
             >
-              <i className={`ri-user-fill`}></i>
+              <PersonIcon />
             </button>
-          </Link>
+          </Tooltip>
         </div>
       </div>
     </div>

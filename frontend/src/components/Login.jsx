@@ -19,7 +19,7 @@ function Login() {
       if (response.data && Object.keys(response.data).length > 0) {
         console.log("Login successful:", response.data);
 
-        navigate("/home", { userData: response.data });
+        navigate("/home", { state: { userData: response.data } });
       } else {
         window.alert("Wrong name or password.");
         console.log("Invalid login credentials");
