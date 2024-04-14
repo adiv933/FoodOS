@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 import Cart from "../components/Cart";
-import Loading from "../components/Loading";
 import axios from "axios";
+import { CircularProgress } from "@mui/material";
 
 const Checkout = () => {
   const [name, setName] = useState("");
@@ -12,53 +12,27 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("Cash on Delivery");
   const [items, setItems] = useState([]);
-  const [userData, setUserData] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
-
-  const fetchUserData = async () => {
-    try {
-      const response = await axios.get("http://localhost:4000/profile");
-      console.log(response.data);
-      return response.data[0];
-    } catch (error) {
-      console.error("Error fetching user data:", error);
-      return {};
-    }
-  };
 
   useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true);
-      const temp = await fetchUserData();
-      setUserData(temp);
-      console.log(userData);
-      setName(userData.NAME);
-      setMobile(userData.MOBILE_NUMBER);
-      setAddress(userData.ADDRESS);
-      setPaymentOption(userData.paymentOption);
-      setIsLoading(false);
-    };
-
-    fetchData();
-    // axios
-    //   .get(`http://localhost:4000/profile`)
-    //   .then((res) => {
-    //     if (res.status === 200) {
-    //       setUserData(res.data);
-    //       console.log("userdata in checkout", userData);
-    //       setName(res.data.NAME);
-    //       setMobile(res.data.MOBILE_NUMBER);
-    //       setAddress(res.data.ADDRESS);
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
+    axios
+      .get(`http://localhost:4000/profile`)
+      .then((res) => {
+        if (res.status === 200) {
+          // setUserData(res.data[0]);
+          const { NAME, MOBILE_NUMBER, ADDRESS } = res.data[0];
+          setName(NAME);
+          setMobile(MOBILE_NUMBER);
+          setAddress(ADDRESS);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     axios
       .get("http://localhost:4000/checkout")
       .then((res) => {
         if (res.status === 200) {
-          console.log(res);
+          // console.log(res);
           setItems(res.data);
         }
       })
@@ -71,9 +45,11 @@ const Checkout = () => {
     <div className="w-full h-screen bg-no-repeat bg-top ">
       <Navbar />
 
-      <div className="flex w-[90%] mx-auto  h-[75%] rounded overflow-hidden shadow-md ">
-        {isLoading ? (
-          <Loading />
+      <div className="flex w-[90%] mx-auto  h-[75%] rounded overflow-hidden shadow-md">
+        {!(name || mobile || address) ? (
+          <div className="flex mx-auto items-center ">
+            <CircularProgress color="warning" size={100} />
+          </div>
         ) : (
           <>
             {/* Left Section */}

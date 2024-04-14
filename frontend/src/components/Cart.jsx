@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
 import { useNavigate } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
+import { useState } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
+import axios from "axios";
 
 export default function Cart({
   name,
@@ -9,6 +15,14 @@ export default function Cart({
   items,
   setItems,
 }) {
+  const [paymentSuccessfulAlert, setPaymentSuccessfulAlert] = useState(false);
+  const [open, setOpen] = useState(false);
+  const handleClose = () => {
+    setOpen(false);
+  };
+  const handleOpen = () => {
+    setOpen(true);
+  };
   const navigate = useNavigate();
 
   const increaseQuantity = (id) => {
@@ -43,8 +57,47 @@ export default function Cart({
     (acc, item) => acc + item.SUBTOTAL_AMOUNT * item.QUANTITY,
     0
   );
+
+  const handlePayment = async () => {
+    handleOpen();
+    setOpen(true);
+
+    try {
+      const response = await axios.post("http://localhost:4000/payment", {
+        total_amount: totalPrice,
+      });
+
+      if (response.data && Object.keys(response.data).length > 0) {
+        console.log("payment successful:", response.data);
+      } else {
+        console.log("payment unsuccessful");
+      }
+    } catch (error) {
+      console.error("Error during handling payment:", error);
+    }
+
+    setTimeout(() => {
+      setOpen(false);
+      setPaymentSuccessfulAlert(true);
+    }, 3000);
+    setTimeout(() => {
+      navigate("/home");
+    }, 5000);
+  };
+
   return (
-    <div className="h-fit ">
+    <div className="h-fit">
+      {paymentSuccessfulAlert && (
+        <div className="absolute bottom-0 w-full mb-4">
+          <Alert
+            icon={<CheckCircleOutlineIcon fontSize="inherit" />}
+            severity="success"
+            variant="filled"
+          >
+            Payment was successful.
+          </Alert>
+        </div>
+      )}
       <div className="mb-8 ">
         <h2 className="text-xl font-semibold mb-2">Food Items</h2>
         {items.length ? (
@@ -114,8 +167,7 @@ export default function Cart({
         <p className="font-semibold">Total Bill: ₹{totalPrice}</p>
       </div>
       <button
-        // onClick
-
+        onClick={() => handlePayment()}
         className={`bg-amber-500 hover:bg-amber-600 text-white px-12 py-3 rounded w-full hover:shadow-lg duration-100 ${
           items.length
             ? "hover:-translate-y-1 duration-200"
@@ -124,6 +176,15 @@ export default function Cart({
       >
         Pay ₹{totalPrice}
       </button>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+        className="h-full"
+      >
+        <CircularProgress color="warning" />
+        <h1 className="ml-4 text-2xl">Processing...</h1>
+      </Backdrop>
     </div>
   );
 }

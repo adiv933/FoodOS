@@ -11,12 +11,12 @@ function Home() {
   });
   return (
     <div className="w-full h-screen bg-no-repeat bg-top">
-      {/* <Preloader>
+      <Preloader>
         <span>FOODOS</span>
         <span>|</span>
         <span>Delights</span>
         <span>Delivered</span>
-      </Preloader> */}
+      </Preloader>
       <Navbar />
       <div className="w-[90%] mx-auto">
         <HeroImageAutoplay />

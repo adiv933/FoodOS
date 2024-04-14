@@ -35,7 +35,7 @@ html {
     animation: slide 35s linear infinite;
 }
 
-.logos-slide a {
+.logos-slide button {
     flex-shrink: 0;
 }
 

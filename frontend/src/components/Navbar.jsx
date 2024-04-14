@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
-import { Link } from "react-router-dom";
 import "../index.css";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import SearchBar from "./SearchBar";
 import Tooltip from "@mui/material/Tooltip";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -48,6 +47,13 @@ export default function Navbar() {
               <ShoppingCartIcon />
             </button>
           </Tooltip>
+          {/* <FormControlLabel
+            sx={{ color: "text.primary" }}
+            control={
+              <Switch checked={!invisible} onChange={handleBadgeVisibility} />
+            }
+            label="Show Badge"
+          /> */}
           <Tooltip title="Profile" placement="bottom-start">
             <button
               onClick={() => {

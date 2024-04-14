@@ -24,7 +24,7 @@ const dbConfig = {
     connectString: 'localhost:1521/XEPDB1'
 };
 
-let currentSID;
+let currentSID = "";
 let order_id;
 let order_timestamp;
 
@@ -116,15 +116,65 @@ app.get('/checkout', async (req, res) => {
 
 app.get('/search/:q', async (req, res) => {
     let { q } = req.params;
-    // q = q.substring(0, 1).toUpperCase() + q.substring(1).toLowerCase();
+    q = q.toLowerCase();
     try {
-        const query = 'SELECT * FROM dishes WHERE name like :q';
+        const query = 'SELECT * FROM dishes WHERE LOWER(name) like :q';
         const binds = [`%${q}%`];
         const result = await getQuery(query, binds);
         return res.json(result);
     } catch (err) {
         console.log(err);
     }
+});
+
+app.get('/allOrders', async (req, res) => {
+    try {
+        const query = 'SELECT o.order_id, o.order_timestamp, o.total_amount FROM Orders o WHERE o.user_id = :currentSID ORDER BY o.order_timestamp DESC';
+        const result = await getQuery(query, { currentSID });
+        return res.json(result);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.get('/orderDetails/:order_id', async (req, res) => {
+    const { order_id } = req.params;
+    try {
+        const query = 'SELECT d.name, d.price FROM Dishes d NATURAL JOIN Order_details od WHERE od.order_id = :order_id ORDER BY d.price ASC';
+        const result = await getQuery(query, { order_id });
+        console.log(result)
+        return res.json(result);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+app.post('/payment', async (req, res) => {
+    const total_amount = req.body.total_amount;
+    console.log(total_amount)
+    try {
+        const binds = {
+            total_amount: total_amount,
+            order_id: order_id
+        }
+        const query = `
+            UPDATE Orders o 
+            SET o.total_amount = :total_amount
+            WHERE o.order_id = :order_id
+        `;
+        const result = await postQuery(query, binds);
+
+        console.log(result);
+
+        order_id = random();
+        console.log("order_id reinitialized", order_id)  //!reinitializing order_id
+
+        return res.json(result);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: 'Internal Server Error' });
+    }
+
 });
 
 app.post('/register', async (req, res) => {
@@ -151,8 +201,8 @@ app.post('/register', async (req, res) => {
         query = "INSERT INTO ORDERS (order_id, order_timestamp, user_id) VALUES (:order_id, :order_timestamp, :currentSID)"
         result = await postQuery(query, { order_id, order_timestamp, currentSID });
 
-        console.log(`User created with \nID: ${id}\nName: ${name}\nMobile:${mobile}\nPassword: ${hash}`);
-        console.log("Order table initiated : ", result)
+        // console.log(`User created with \nID: ${id}\nName: ${name}\nMobile:${mobile}\nPassword: ${hash}`);
+        // console.log("Order table initiated : ", result)
 
         return res.redirect('http://localhost:5173/home');
     } catch (err) {
@@ -185,7 +235,7 @@ app.post('/login', async (req, res) => {
         if (isValid) {
             query = "INSERT INTO ORDERS (order_id, order_timestamp, user_id) VALUES (:order_id, :order_timestamp, :currentSID)"
             const result2 = await postQuery(query, { order_id, order_timestamp, currentSID });
-            console.log("Order table initiated : ", result2)
+            console.log("Order table initiated : ", order_id)
             return res.json(result1[0]);
         }
         else {
@@ -199,7 +249,7 @@ app.post('/login', async (req, res) => {
 
 app.post('/profile', async (req, res) => {
     const name = req.body.name;
-    const mobile = req.body.mobile;
+    const mobile = req.body.mobileNumber;
     const address = req.body.address;
 
     try {
@@ -213,11 +263,8 @@ app.post('/profile', async (req, res) => {
         const query = "UPDATE users SET name = :name, mobile_number = :mobile, address = :address WHERE user_id = :currentSID";
 
         const result = await postQuery(query, binds);
-        console.log(result)
-        if (result.rowsAffected === '0')
-            console.log(`User details updated with\nName: ${name}\nMobile:${mobile}\nAddress:${address}\nPassword: ${password}`);
-        else
-            console.log("profile update failed.")
+        console.log("User updated", result)
+        console.log(`User details updated with\nName: ${name}\nMobile:${mobile}\nAddress:${address}\n`);
 
         return res.redirect("http://localhost:5173/profile");
     } catch (err) {
@@ -246,14 +293,18 @@ app.post('/addtocart', async (req, res) => {
         const query = "INSERT INTO ORDER_DETAILS (order_detail_id, order_id, dish_id, quantity, subtotal_amount) VALUES (:order_detail_id, :order_id, :dish_id, :quantity, :subtotal_amount)";
 
         const result = await postQuery(query, binds);
-        // console.log(result)
-        console.log(`Order details \n`, binds);
-        // if (result.rowsAffected === '0')
-        // else
-        // console.log("Order placement failed.")
 
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal server error' });
     }
 })
+
+app.post('/logout', async (req, res) => {
+    try {
+        currentSID = "";
+        console.log("currentSID reset:", currentSID);
+    } catch (err) {
+        console.log(err);
+    }
+});

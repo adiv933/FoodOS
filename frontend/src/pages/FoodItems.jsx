@@ -28,7 +28,7 @@ export default function FoodItems() {
   return (
     <div className="w-full h-screen bg-no-repeat bg-top ">
       <Navbar />
-      <div className="flex w-[90%] mx-auto  h-fit rounded overflow p-8 bg-white shadow-md ">
+      <div className="flex w-[90%] mx-auto  h-fit rounded overflow p-8 bg-blur2 ">
         {data.length ? (
           <MenuSection menuItems={data}>
             {`Search results for ${desiredDishName}`}

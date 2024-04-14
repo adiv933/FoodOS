@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-// import Preloader from "../components/Preloader";
+import Preloader from "../components/Preloader";
 import MenuSection from "../components/MenuSection";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -68,12 +68,12 @@ const Restaurant = () => {
 
   return (
     <div className="w-full h-screen bg-no-repeat bg-top">
-      {/* <Preloader>
+      <Preloader>
         <span>Loading</span>
         <span>.</span>
         <span>.</span>
         <span>.</span>
-      </Preloader> */}
+      </Preloader>
       <Navbar />
       {isLoading ? (
         "Loading..."

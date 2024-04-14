@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import StarIcon from "@mui/icons-material/Star";
 import { yellow } from "@mui/material/colors";
+import Skeleton from '@mui/material/Skeleton';
 
 const RestoCard = ({ resto }) => {
   return (
-    <Link
+    (<Link
       to={`/restaurant/${resto.RESTAURANT_ID}`}
       className="hover:no-underline"
       state={{ id: resto.RESTAURANT_ID }}
@@ -32,15 +33,15 @@ const RestoCard = ({ resto }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </Link>)
   );
 };
 
-const RestoCardView = ({ restaurants }) => {
+const RestoCardView = ({ restaurants, isLoading }) => {
   return (
     <div className="flex flex-wrap justify-around ">
       {restaurants.map((resto, index) => (
-        <RestoCard resto={resto} key={index} />
+        <RestoCard resto={resto} key={index} isLoading={isLoading} />
       ))}
     </div>
   );
@@ -70,11 +71,7 @@ export default function HeroResto() {
       <h1 className="text-2xl font-semibold mb-8">
         Top restuarant chains in Manipal
       </h1>
-      {isLoading ? (
-        <div className="text-2xl font-semibold mb-8">Loading...</div>
-      ) : (
-        <RestoCardView restaurants={restaurants} />
-      )}
+      <RestoCardView restaurants={restaurants} isLoading={isLoading} />
     </div>
   );
 }
