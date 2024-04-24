@@ -27,37 +27,52 @@ const HeroImageAutoplay = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="mt-8 p-8 bg-zinc-100 rounded-md mb-12 bg-blur1">
-      <h1 className="text-2xl font-semibold">What's on your mind?</h1>
-      <div className="logos py-4 overflow-hidden relative">
-        <div className="logos-slide flex">
-          {images.map((image, index) => (
-            <button
-              onClick={() => {
-                navigate("/fooditems", { state: { dishName: image.alt } });
-              }}
-              key={index}
-              className=" mx-2 w-44 h-52 rounded-md hover:-translate-y-2 hover:shadow-lg hover:border-2 hover:border-amber-200 duration-200"
-            >
-              <img src={image.url} />
-            </button>
-          ))}
-          {images.map((image, index) => (
-            <button
-              onClick={() => {
-                navigate("/fooditems", { state: { dishName: image.alt } });
-              }}
-              key={index}
-              className=" mx-2 w-44 h-52 rounded-md hover:-translate-y-2 hover:shadow-lg hover:border-2 hover:border-amber-200 duration-200"
-            >
-              <img src={image.url} />
-            </button>
-          ))}
+    <>
+      <div className="bg-blur1 mb-12 mt-8 rounded-md bg-zinc-100 p-8">
+        <div className="content mt-4">
+          <div className="content__container">
+            <h1 className="content__container__text ">Whats on your mind.</h1>
+
+            <ul className="content__container__list">
+              <li className="content__container__list__item">Pizza?</li>
+              <li className="content__container__list__item">South Indian?</li>
+              <li className="content__container__list__item">Burger?</li>
+              <li className="content__container__list__item">North Indian?</li>
+            </ul>
+          </div>
         </div>
-        {/* <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-zinc-100 to-transparent"></div>
+
+        {/* <h1 className="">What's on your mind?</h1> */}
+        <div className="logos relative mt-4 overflow-hidden py-6">
+          <div className="logos-slide flex">
+            {images.map((image, index) => (
+              <button
+                onClick={() => {
+                  navigate("/fooditems", { state: { dishName: image.alt } });
+                }}
+                key={index}
+                className=" mx-2 h-52 w-44 rounded-md duration-200 hover:-translate-y-2 hover:border-2 hover:border-amber-200 hover:shadow-lg"
+              >
+                <img src={image.url} />
+              </button>
+            ))}
+            {images.map((image, index) => (
+              <button
+                onClick={() => {
+                  navigate("/fooditems", { state: { dishName: image.alt } });
+                }}
+                key={index}
+                className=" mx-2 h-52 w-44 rounded-md duration-200 hover:-translate-y-2 hover:border-2 hover:border-amber-200 hover:shadow-lg"
+              >
+                <img src={image.url} />
+              </button>
+            ))}
+          </div>
+          {/* <div className="absolute inset-y-0 left-0 top-4 h w-40 h-52 bg-gradient-to-r from-zinc-100 to-transparent"></div>
           <div className="absolute inset-y-0 right-0 top-4 w-40 h-52 bg-gradient-to-l from-zinc-100 to-transparent"></div> */}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

@@ -9,13 +9,11 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     try {
       const response = await axios.post("http://localhost:4000/login", {
         name,
         password,
       });
-
       if (response.data && Object.keys(response.data).length > 0) {
         console.log("Login successful:", response.data);
 
@@ -30,7 +28,7 @@ function Login() {
   };
   return (
     <div>
-      <h1 className="text-center text-3xl mb-8">Login</h1>
+      <h1 className="mb-8 text-center text-3xl">Login</h1>
       <form onSubmit={handleSubmit} className="mx-auto w-full max-w-sm">
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700">
@@ -42,7 +40,7 @@ function Login() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             required
-            className="mt-1 p-2 w-full border rounded-md"
+            className="mt-1 w-full rounded-md border p-2"
           />
         </div>
         <div className="mb-4">
@@ -55,13 +53,13 @@ function Login() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="mt-1 p-2 w-full border rounded-md"
+            className="mt-1 w-full rounded-md border p-2"
           />
         </div>
         <div className="my-8">
           <button
             type="submit"
-            className="bg-amber-500 text-white py-2 px-4 rounded-md w-full hover:bg-amber-600 focus:outline-none focus:bg-amber-600"
+            className="w-full rounded-md bg-amber-500 px-4 py-2 text-white hover:bg-amber-600 focus:bg-amber-600 focus:outline-none"
           >
             Login
           </button>

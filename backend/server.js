@@ -229,6 +229,7 @@ app.post('/login', async (req, res) => {
         currentSID = result1[0].USER_ID;
 
         const fetched_password = result1[0].PASSWORD;
+        console.log("Password: ", result1[0].PASSWORD);
         const isValid = await bcrypt.compare(password, fetched_password)
         console.log("User is valid:", isValid);
 
@@ -308,3 +309,40 @@ app.post('/logout', async (req, res) => {
         console.log(err);
     }
 });
+
+
+//requests using PL/SQL
+
+async function getUserPassword() {
+    const connection = await oracledb.getConnection(dbConfig);
+    const sql = `begin :les:= getUserPassword(username); end;`;
+
+    const bindVars = {
+        les: {
+            type: oracledb.STRING,
+            dir: oracledb.BIND_OUT,
+            maxSize: 60
+        }
+    };
+
+    const options = {
+        bindDefs: bindVars,
+        autoCommit: true
+    };
+
+    connection.execute(sql, [], options)
+        .then(result => {
+            console.log("Password: ", result.outBinds);
+            console.log("User is valid:", isValid);
+            console.log("Order table initiated : ", order_id);
+        })
+        .catch(err => {
+            console.error(err);
+        });
+}
+
+app.get('/user/login', async (req, res) => {
+    const result = await getUserPassword(req.body.USERNAME);
+    res.send(result);
+})
+

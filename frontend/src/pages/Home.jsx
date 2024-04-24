@@ -8,9 +8,9 @@ import { useEffect } from "react";
 function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
-  });
+  }, []);
   return (
-    <div className="w-full h-screen bg-no-repeat bg-top">
+    <div className="h-screen w-full bg-top bg-no-repeat">
       <Preloader>
         <span>FOODOS</span>
         <span>|</span>
@@ -18,7 +18,7 @@ function Home() {
         <span>Delivered</span>
       </Preloader>
       <Navbar />
-      <div className="w-[90%] mx-auto">
+      <div className="mx-auto w-[90%]">
         <HeroImageAutoplay />
         <HeroResto />
       </div>

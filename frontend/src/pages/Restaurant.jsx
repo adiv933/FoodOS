@@ -67,7 +67,7 @@ const Restaurant = () => {
   });
 
   return (
-    <div className="w-full h-screen bg-no-repeat bg-top">
+    <div className="h-screen w-full bg-top bg-no-repeat">
       <Preloader>
         <span>Loading</span>
         <span>.</span>
@@ -78,14 +78,14 @@ const Restaurant = () => {
       {isLoading ? (
         "Loading..."
       ) : (
-        <div className="w-[90%] mx-auto bg-white shadow-lg rounded overflow-hidden">
-          <div className="relative mb-8 border-b-2 overflow-hidden">
+        <div className="mx-auto w-[90%] overflow-hidden rounded bg-white shadow-lg">
+          <div className="relative mb-8 overflow-hidden border-b-2">
             <img
-              className="w-full h-96 object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110"
+              className="h-96 w-full transform object-cover object-center transition-transform duration-300 ease-in-out hover:scale-110"
               src={resto.IMG_SRC}
               alt={resto.NAME}
             />
-            <div className="absolute bottom-0 left-0 w-full h-48 bg-gradient-to-t from-black to-transparent"></div>
+            <div className="absolute bottom-0 left-0 h-48 w-full bg-gradient-to-t from-black to-transparent"></div>
             <div className="absolute bottom-0 left-0 px-6 pb-4">
               <h2 className="text-6xl font-semibold text-white">
                 {resto.NAME}
@@ -95,15 +95,15 @@ const Restaurant = () => {
           <div className="flex">
             <div className="w-1/4 p-6">
               {/* Sort options */}
-              <div className="pb-24 border-b-2">
+              <div className="border-b-2 pb-24">
                 <label
-                  className="block text-gray-700 text-lg font-bold mb-2"
+                  className="mb-2 block text-lg font-bold text-gray-700"
                   htmlFor="sortOptions"
                 >
                   Sort by:
                 </label>
                 <select
-                  className="w-full border border-gray-300 rounded py-2 px-3 leading-tight focus:outline-none focus:border-gray-500"
+                  className="w-full rounded border border-gray-300 px-3 py-2 leading-tight focus:border-gray-500 focus:outline-none"
                   id="sortOptions"
                   value={sortBy}
                   onChange={handleSortChange}
@@ -115,23 +115,23 @@ const Restaurant = () => {
                 </select>
               </div>
               {/* Rating section */}
-              <div className="mt-8 mb-4">
-                <div className="text-center bg-amber-500   text-white font-bold py-2 px-4 rounded mb-8">
+              <div className="mb-4 mt-8">
+                <div className="mb-8 rounded   bg-amber-500 px-4 py-2 text-center font-bold text-white">
                   Rate this restaurant
                 </div>
-                <p className="block text-gray-700 text-lg font-bold mb-2">
+                <p className="mb-2 block text-lg font-bold text-gray-700">
                   Current Rating: {rating || resto.RATING}
                 </p>
               </div>
               <RatingSection onRatingChange={handleRatingChange} />
             </div>
-            <div className="w-3/4 p-6 border-l border-gray-200">
+            <div className="w-3/4 border-l border-gray-200 p-6">
               {/* Contact and address section */}
               <div className="mb-4">
-                <p className="block text-gray-700 text-lg font-semibold mb-2">
+                <p className="mb-2 block text-lg font-semibold text-gray-700">
                   Contact Number: {resto.CONTACT_NUMBER}
                 </p>
-                <p className="block text-gray-700 text-lg font-semibold mb-2">
+                <p className="mb-2 block text-lg font-semibold text-gray-700">
                   Address: {resto.ADDRESS}
                 </p>
               </div>
