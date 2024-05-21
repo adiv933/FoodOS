@@ -5,10 +5,20 @@ import { useNavigate } from "react-router-dom";
 function Login() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const handleAdminLogin = (e) => {
+    e.preventDefault();
+
+    setIsAdmin(true);
+  };
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (name === "admin" && password === "admin") {
+      navigate("/admin/add/restaurant");
+    }
     try {
       const response = await axios.post("http://localhost:4000/login", {
         name,
@@ -28,7 +38,9 @@ function Login() {
   };
   return (
     <div>
-      <h1 className="mb-8 text-center text-3xl">Login</h1>
+      <h1 className="mb-8 text-center text-3xl">
+        {isAdmin ? "Hello Admin" : "Login"}
+      </h1>
       <form onSubmit={handleSubmit} className="mx-auto w-full max-w-sm">
         <div className="mb-4">
           <label htmlFor="name" className="block text-gray-700">
@@ -64,6 +76,9 @@ function Login() {
             Login
           </button>
         </div>
+        <button className="text-red-500 underline" onClick={handleAdminLogin}>
+          Admin login
+        </button>
       </form>
     </div>
   );

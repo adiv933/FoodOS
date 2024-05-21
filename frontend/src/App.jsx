@@ -6,6 +6,7 @@ import Restos from "./pages/Restaurant";
 import Tracking from "./pages/Tracking";
 import Profile from "./pages/Profile";
 import Restaurant from "./pages/Restaurant";
+import Admin from "./pages/Admin";
 import { Routes, Route } from "react-router-dom";
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
     <Routes>
       <Route index element={<LoginRegisterForm />} />
       <Route path="/home" element={<Home />} />
+      <Route path="/admin/add/restaurant" element={<Admin />} />
       <Route path="/login" element={<LoginRegisterForm />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/fooditems/*" element={<FoodItems />} />

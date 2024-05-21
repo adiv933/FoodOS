@@ -52,6 +52,7 @@ const postQuery = (query, binds = []) => {
     });
 };
 
+
 app.get('/home', async (req, res) => {
     try {
         const query = 'SELECT * FROM restaurants';
@@ -219,7 +220,7 @@ app.post('/login', async (req, res) => {
     order_timestamp = Date();
 
     try {
-        let query = `SELECT * FROM USERS WHERE name = :name`;                //!names cant repeat
+        let query = `SELECT * FROM USERS WHERE name = :name`;
         const result1 = await getQuery(query,
             {
                 name: name,
@@ -234,6 +235,7 @@ app.post('/login', async (req, res) => {
         console.log("User is valid:", isValid);
 
         if (isValid) {
+
             query = "INSERT INTO ORDERS (order_id, order_timestamp, user_id) VALUES (:order_id, :order_timestamp, :currentSID)"
             const result2 = await postQuery(query, { order_id, order_timestamp, currentSID });
             console.log("Order table initiated : ", order_id)
@@ -310,8 +312,42 @@ app.post('/logout', async (req, res) => {
     }
 });
 
+//* admin adds restaurants
 
-//requests using PL/SQL
+app.post('/admin/add/restaurant', async (req, res) => {
+    const name = req.body.name;
+    const mobile = req.body.mobileNumber;
+    const address = req.body.address;
+    const deliveryTime = req.body.deliveryTime;
+    const rating = req.body.rating;
+    const id = random();
+    const img_src = "https://fastly.picsum.photos/id/42/3456/2304.jpg?hmac=dhQvd1Qp19zg26MEwYMnfz34eLnGv8meGk_lFNAJR3g";
+
+    try {
+        const binds = {
+            id,
+            name,
+            mobile,
+            address,
+            rating,
+            deliveryTime,
+            img_src
+        };
+
+        const query = "INSERT INTO Restaurants (restaurant_id, name, address, contact_number, rating, delivery_time, img_src) VALUES (:id,:name,:mobile,:address,:rating,:deliveryTime,:img_src)";
+
+        const result = await postQuery(query, binds);
+        console.log("Restaurant added by admin", result)
+        console.log(`Restaurant details \nID: ${id}\nName: ${name}\nMobile:${mobile}\nAddress:${address}\n`);
+
+        return res.redirect("http://localhost:5173/admin/add/restaurant");
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+})
+
+//* requests using PL/SQL
 
 async function getUserPassword() {
     const connection = await oracledb.getConnection(dbConfig);
@@ -343,6 +379,24 @@ async function getUserPassword() {
 
 app.get('/user/login', async (req, res) => {
     const result = await getUserPassword(req.body.USERNAME);
+
+    //! if user is admin code here
+    if (name === 'admin' && password === 'admin') {
+        return res.redirect('http://localhost:5173/admin/add/restaurant');
+    }
+
+    const isValid = await bcrypt.compare(password, fetched_password)
+    console.log("User is valid:", isValid);
+
     res.send(result);
+    if (isValid) {
+        query = "INSERT INTO ORDERS (order_id, order_timestamp, user_id) VALUES (:order_id, :order_timestamp, :currentSID)"
+        const result2 = await postQuery(query, { order_id, order_timestamp, currentSID });
+        console.log("Order table initiated : ", order_id)
+        return res.json(result1[0]);
+    }
+    else {
+        return res.json([]);
+    }
 })
 

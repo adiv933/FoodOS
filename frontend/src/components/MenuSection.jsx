@@ -39,29 +39,29 @@ const MenuItem = ({ item }) => {
   };
 
   return (
-    <div className="flex items-center mb-4 px-4 border-2 rounded h-32 ">
+    <div className="mb-4 flex h-32 items-center rounded border-2 px-4 ">
       <img
         src={item.IMG_SRC}
         alt={item.NAME}
-        className="w-20 h-20 mr-8 rounded object-cover object-center transition-transform duration-300 ease-in-out transform hover:scale-110 "
+        className="mr-8 h-20 w-20 transform rounded object-cover object-center transition-transform duration-300 ease-in-out hover:scale-110 "
       />
       <div className="flex-grow">
         <h3 className="text-lg font-semibold">{item.NAME}</h3>
-        <p className="text-gray-600 flex gap-1">
+        <p className="flex gap-1 text-gray-600">
           Rating: {item.RATING}
           <StarIcon sx={{ color: yellow[700] }} />
         </p>
       </div>
       <div className="flex items-center">
-        <p className="text-gray-700 mr-4 font-semibold text-xl">
+        <p className="mr-4 text-xl font-semibold text-gray-700">
           ₹{item.PRICE}{" "}
         </p>
         <Tooltip title={isAdded ? "" : "Add to cart"}>
           <button
-            className={`bg-amber-500 hover:bg-amber-700 text-white font-bold py-2 px-4 rounded  ${
+            className={`rounded bg-amber-500 px-4 py-2 font-bold text-white hover:bg-amber-700  ${
               isAdded
-                ? "opacity-50 cursor-not-allowed"
-                : "hover:-translate-y-1 duration-200"
+                ? "cursor-not-allowed opacity-50"
+                : "duration-200 hover:-translate-y-1"
             }`}
             onClick={handleClick}
             disabled={isAdded}
@@ -87,10 +87,12 @@ const MenuItem = ({ item }) => {
 const MenuSection = ({ menuItems, children }) => {
   return (
     <div className="w-full">
-      <h2 className="text-3xl font-semibold my-8 ">{children}</h2>
-      {menuItems.map((item, index) => (
-        <MenuItem key={index} item={item} />
-      ))}
+      <h2 className="my-8 text-3xl font-semibold ">{children}</h2>
+      {menuItems ? (
+        menuItems.map((item, index) => <MenuItem key={index} item={item} />)
+      ) : (
+        <h1 className="text-black">Menu not added</h1>
+      )}
     </div>
   );
 };
