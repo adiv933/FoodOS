@@ -33,7 +33,7 @@ function Admin() {
               <button
                 onClick={() => {
                   axios
-                    .post("http://localhost:4000/logout")
+                    .post("http://localhost:4000/auth/logout")
                     .then((res) => console.log(res))
                     .catch((err) => {
                       console.log(err);

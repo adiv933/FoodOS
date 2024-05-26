@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import axios from "axios";
-import { Modal, Snackbar } from "@mui/material";
+import { Modal } from "@mui/material";
 
 function OrderList({ orderData }) {
   const [openModalIndex, setOpenModalIndex] = useState(null);
@@ -12,7 +12,7 @@ function OrderList({ orderData }) {
   const handleOpen = (index, id) => {
     setOpenModalIndex(index);
     axios
-      .get(`http://localhost:4000/orderDetails/${id}`)
+      .get(`http://localhost:4000/order/orderDetails/${id}`)
       .then((res) => {
         if (res.status === 200) {
           setOrderDetail(res.data);
@@ -120,7 +120,7 @@ export default function Profile() {
   const handleOrderClick = () => {
     handleTabChange("orderHistory");
     axios
-      .get("http://localhost:4000/allOrders")
+      .get("http://localhost:4000/order/allOrders")
       .then((res) => {
         if (res.status === 200) {
           setOrderData(res.data);
@@ -182,7 +182,7 @@ export default function Profile() {
               <button
                 onClick={() => {
                   axios
-                    .post("http://localhost:4000/logout")
+                    .post("http://localhost:4000/auth/logout")
                     .then((res) => console.log(res))
                     .catch((err) => {
                       console.log(err);

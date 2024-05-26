@@ -13,7 +13,7 @@ export default function FoodItems() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/search/${desiredDishName}`)
+      .get(`http://localhost:4000/restaurant/search/${desiredDishName}`)
       .then((res) => {
         if (res.status === 200) {
           // console.log(res);
@@ -26,9 +26,9 @@ export default function FoodItems() {
   });
 
   return (
-    <div className="w-full h-screen bg-no-repeat bg-top ">
+    <div className="h-screen w-full bg-top bg-no-repeat ">
       <Navbar />
-      <div className="flex w-[90%] mx-auto  h-fit rounded overflow p-8 bg-blur2 ">
+      <div className="overflow bg-blur2 mx-auto  flex h-fit w-[90%] rounded p-8 ">
         {data.length ? (
           <MenuSection menuItems={data}>
             {`Search results for ${desiredDishName}`}

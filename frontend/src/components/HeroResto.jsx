@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import StarIcon from "@mui/icons-material/Star";
 import { yellow } from "@mui/material/colors";
-import Skeleton from '@mui/material/Skeleton';
 
 const RestoCard = ({ resto }) => {
   return (

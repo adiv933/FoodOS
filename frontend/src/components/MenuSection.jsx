@@ -29,7 +29,7 @@ const MenuItem = ({ item }) => {
     setIsAdded(true);
     console.log(`Added ${item.NAME} to cart`);
     axios
-      .post("http://localhost:4000/addtocart", { item })
+      .post("http://localhost:4000/order/addtocart", { item })
       .then((response) => {
         console.log("SUCCESS!!! Response from server:", response);
       })

@@ -20,7 +20,7 @@ function Login() {
       navigate("/admin/add/restaurant");
     }
     try {
-      const response = await axios.post("http://localhost:4000/login", {
+      const response = await axios.post("http://localhost:4000/auth/login", {
         name,
         password,
       });
