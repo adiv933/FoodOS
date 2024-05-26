@@ -3,7 +3,7 @@ CREATE TABLE Users (
     user_id VARCHAR(255) PRIMARY KEY,
     name VARCHAR(255),
     mobile_number VARCHAR(20),
-    password VARCHAR(20),
+    password VARCHAR(255),
     address VARCHAR(255)
 );
 
@@ -14,7 +14,8 @@ CREATE TABLE Restaurants (
     address VARCHAR(255),
     contact_number VARCHAR(50),
     delivery_time VARCHAR(30),
-    rating DECIMAL(3, 1)
+    rating DECIMAL(3, 1),
+    img_src VARCHAR(255)
 );
 
 -- Menu Table
@@ -31,6 +32,7 @@ CREATE TABLE Dishes (
     name VARCHAR(255),
     price DECIMAL(10, 2),
     rating DECIMAL(3, 1),
+    img_src VARCHAR(255),
     FOREIGN KEY (menu_id) REFERENCES Menu(menu_id)
 );
 
@@ -120,9 +122,6 @@ VALUES (11, 'Curry Kingdom', '11 Curry Corner, Manipal, Karnataka, India', '+91 
 INSERT INTO Restaurants (restaurant_id, name, address, contact_number, rating, delivery_time) 
 VALUES (12, 'Naan Nook', '12 Naan Street, Manipal, Karnataka, India', '+91 7766889955', 4.5, '30-40 minutes');
 
-ALTER TABLE Restaurants
-ADD img_src VARCHAR(255);
-
 UPDATE Restaurants
 SET img_src = CASE 
     WHEN restaurant_id = 1 THEN '../../public/assets/restos/cake2.jpeg'
@@ -180,77 +179,7 @@ INSERT INTO Dishes (dish_id, menu_id, name, price, rating) VALUES
        (4, 1, 'Carrot Cake', 135.00, 4.3);
        INSERT INTO Dishes (dish_id, menu_id, name, price, rating) VALUES
        (5, 1, 'Cheesecake', 160.00, 4.4);
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake1.jpg' WHERE dish_id = 1;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake2.jpg' WHERE dish_id = 2;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake3.jpg' WHERE dish_id = 3;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake4.jpg' WHERE dish_id = 4;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake5.jpg' WHERE dish_id = 5;
 
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north6.jpg' WHERE dish_id = 6;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north7.jpg' WHERE dish_id = 7;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north8.jpg' WHERE dish_id = 8;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north9.jpg' WHERE dish_id = 9;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north10.jpg' WHERE dish_id = 10;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north10.jpg' WHERE dish_id = 11;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north11.jpg' WHERE dish_id = 12;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north12.jpg' WHERE dish_id = 13;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north13.jpg' WHERE dish_id = 14;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north14.jpg' WHERE dish_id = 15;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger1.jpg' WHERE dish_id = 16;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger2.jpg' WHERE dish_id = 17;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger3.jpg' WHERE dish_id = 18;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger4.jpg' WHERE dish_id = 19;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger5.jpg' WHERE dish_id = 20;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger4.jpg' WHERE dish_id = 21;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger5.jpg' WHERE dish_id = 22;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger6.jpg' WHERE dish_id = 23;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger7.jpg' WHERE dish_id = 24;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/burger8.jpg' WHERE dish_id = 25;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese1.jpg' WHERE dish_id = 26;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese2.jpg' WHERE dish_id = 27;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese3.jpg' WHERE dish_id = 28;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese4.jpg' WHERE dish_id = 29;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese5.jpg' WHERE dish_id = 30;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake5.jpg' WHERE dish_id = 31;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake6.jpg' WHERE dish_id = 32;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake7.jpg' WHERE dish_id = 33;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake8.jpg' WHERE dish_id = 34;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/cake9.jpg' WHERE dish_id = 35;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza1.jpg' WHERE dish_id = 36;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza2.jpg' WHERE dish_id = 37;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza3.jpg' WHERE dish_id = 38;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza4.jpg' WHERE dish_id = 39;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza5.jpg' WHERE dish_id = 40;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza4.jpg' WHERE dish_id = 41;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza5.jpg' WHERE dish_id = 42;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza6.jpg' WHERE dish_id = 43;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza7.jpg' WHERE dish_id = 44;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza8.jpg' WHERE dish_id = 45;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen1.jpg' WHERE dish_id = 46;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen2.jpg' WHERE dish_id = 47;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen3.jpg' WHERE dish_id = 48;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen4.jpg' WHERE dish_id = 49;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen5.jpg' WHERE dish_id = 50;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north8.jpg' WHERE dish_id = 51;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north9.jpg' WHERE dish_id = 52;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north1.jpg' WHERE dish_id = 53;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north14.jpg' WHERE dish_id = 54;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north5.jpg' WHERE dish_id = 55;
-
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north1.jpg' WHERE dish_id = 56;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north2.jpg' WHERE dish_id = 57;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north4.jpg' WHERE dish_id = 58;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north6.jpg' WHERE dish_id = 59;
-UPDATE Dishes SET img_src = '../../public/assets/dishes/north7.jpg' WHERE dish_id = 60;
 
 -- Spice Junction
 INSERT INTO Dishes (dish_id, menu_id, name, price, rating) VALUES 
@@ -384,3 +313,75 @@ INSERT INTO Dishes (dish_id, menu_id, name, price, rating) VALUES
        INSERT INTO Dishes (dish_id, menu_id, name, price, rating) VALUES
        (60, 12, 'Dal Makhani', 180.00, 4.2);
        
+--Adding images to Dishes
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake1.jpg' WHERE dish_id = 1;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake2.jpg' WHERE dish_id = 2;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake3.jpg' WHERE dish_id = 3;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake4.jpg' WHERE dish_id = 4;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake5.jpg' WHERE dish_id = 5;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north6.jpg' WHERE dish_id = 6;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north7.jpg' WHERE dish_id = 7;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north8.jpg' WHERE dish_id = 8;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north9.jpg' WHERE dish_id = 9;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north10.jpg' WHERE dish_id = 10;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north10.jpg' WHERE dish_id = 11;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north11.jpg' WHERE dish_id = 12;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north12.jpg' WHERE dish_id = 13;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north13.jpg' WHERE dish_id = 14;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north14.jpg' WHERE dish_id = 15;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger1.jpg' WHERE dish_id = 16;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger2.jpg' WHERE dish_id = 17;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger3.jpg' WHERE dish_id = 18;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger4.jpg' WHERE dish_id = 19;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger5.jpg' WHERE dish_id = 20;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger4.jpg' WHERE dish_id = 21;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger5.jpg' WHERE dish_id = 22;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger6.jpg' WHERE dish_id = 23;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger7.jpg' WHERE dish_id = 24;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/burger8.jpg' WHERE dish_id = 25;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese1.jpg' WHERE dish_id = 26;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese2.jpg' WHERE dish_id = 27;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese3.jpg' WHERE dish_id = 28;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese4.jpg' WHERE dish_id = 29;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/chinese5.jpg' WHERE dish_id = 30;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake5.jpg' WHERE dish_id = 31;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake6.jpg' WHERE dish_id = 32;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake7.jpg' WHERE dish_id = 33;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake8.jpg' WHERE dish_id = 34;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/cake9.jpg' WHERE dish_id = 35;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza1.jpg' WHERE dish_id = 36;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza2.jpg' WHERE dish_id = 37;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza3.jpg' WHERE dish_id = 38;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza4.jpg' WHERE dish_id = 39;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza5.jpg' WHERE dish_id = 40;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza4.jpg' WHERE dish_id = 41;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza5.jpg' WHERE dish_id = 42;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza6.jpg' WHERE dish_id = 43;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza7.jpg' WHERE dish_id = 44;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/pizza8.jpg' WHERE dish_id = 45;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen1.jpg' WHERE dish_id = 46;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen2.jpg' WHERE dish_id = 47;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen3.jpg' WHERE dish_id = 48;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen4.jpg' WHERE dish_id = 49;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/ramen5.jpg' WHERE dish_id = 50;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north8.jpg' WHERE dish_id = 51;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north9.jpg' WHERE dish_id = 52;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north1.jpg' WHERE dish_id = 53;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north14.jpg' WHERE dish_id = 54;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north5.jpg' WHERE dish_id = 55;
+
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north1.jpg' WHERE dish_id = 56;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north2.jpg' WHERE dish_id = 57;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north4.jpg' WHERE dish_id = 58;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north6.jpg' WHERE dish_id = 59;
+UPDATE Dishes SET img_src = '../../public/assets/dishes/north7.jpg' WHERE dish_id = 60;
