@@ -12,9 +12,8 @@ import { Routes, Route } from "react-router-dom";
 export default function App() {
   return (
     <Routes>
-      <Route index element={<LoginRegisterForm />} />
+      <Route index element={<Home />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/admin/add/restaurant" element={<Admin />} />
       <Route path="/login" element={<LoginRegisterForm />} />
       <Route path="/checkout" element={<Checkout />} />
       <Route path="/fooditems/*" element={<FoodItems />} />
@@ -22,7 +21,8 @@ export default function App() {
       <Route path="/tracking" element={<Tracking />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/restaurant/*" element={<Restaurant />} />
-      <Route path="*" element={<Home />} />
+      <Route path="/admin/add/restaurant" element={<Admin />} />
+      <Route path="/*" element={<Home />} />
     </Routes>
   );
 }

@@ -10,35 +10,43 @@ export default function FoodItems() {
   const state = location.state;
   const desiredDishName = state?.dishName;
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/search/${desiredDishName}`)
+      .get(`http://localhost:4000/restaurant/search/${desiredDishName}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           // console.log(res);
           setData(res.data);
+          setIsLoading(false);
         }
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, [desiredDishName]);
 
   return (
-    <div className="w-full h-screen bg-no-repeat bg-top ">
+    <div className="h-screen w-full bg-top bg-no-repeat ">
       <Navbar />
-      <div className="flex w-[90%] mx-auto  h-fit rounded overflow p-8 bg-blur2 ">
-        {data.length ? (
-          <MenuSection menuItems={data}>
-            {`Search results for ${desiredDishName}`}
-          </MenuSection>
+      <div className="bg-blur2 container mx-auto rounded p-8">
+        {isLoading ? (
+          <div className="text-center text-xl">Loading...</div>
         ) : (
-          <h1 className="text-3xl">
-            {`No results found for ${desiredDishName}`}
-          </h1>
+          <>
+            <MenuSection menuItems={data}>
+              <div className="mb-4 text-2xl">{`Search results for ${desiredDishName}`}</div>
+            </MenuSection>
+            {!data.length && (
+              <h1 className="mt-4 text-center text-3xl">{`No results found for ${desiredDishName}`}</h1>
+            )}
+          </>
         )}
       </div>
+
       <Footer />
     </div>
   );

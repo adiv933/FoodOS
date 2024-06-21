@@ -26,12 +26,19 @@ const MenuItem = ({ item }) => {
   };
 
   const handleAddToCart = () => {
+    // console.log(item);
     setIsAdded(true);
-    console.log(`Added ${item.NAME} to cart`);
     axios
-      .post("http://localhost:4000/addtocart", { item })
-      .then((response) => {
-        console.log("SUCCESS!!! Response from server:", response);
+      .post(
+        "http://localhost:4000/order/addtocart",
+        { item },
+        {
+          withCredentials: true,
+        },
+      )
+      .then(() => {
+        // console.log(`Added ${item.NAME} to cart`);
+        // console.log("SUCCESS!!! Response from server:", response);
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
@@ -91,7 +98,7 @@ const MenuSection = ({ menuItems, children }) => {
       {menuItems ? (
         menuItems.map((item, index) => <MenuItem key={index} item={item} />)
       ) : (
-        <h1 className="text-black">Menu not added</h1>
+        <h1 className="text-black">Menu not added yet.</h1>
       )}
     </div>
   );

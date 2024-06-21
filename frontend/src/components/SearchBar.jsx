@@ -11,7 +11,7 @@ export default function SearchBar() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(searchQuery);
+    // console.log(searchQuery);
     setSearchQuery("");
     navigate("/fooditems", { state: { dishName: searchQuery } });
   };

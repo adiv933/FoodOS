@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
-import Preloader from "../components/Preloader";
 import MenuSection from "../components/MenuSection";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
@@ -24,7 +23,7 @@ const Restaurant = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
-      .get(`http://localhost:4000/restaurant/${id}`)
+      .get(`http://localhost:4000/restaurant/${id}`, { withCredentials: true })
       .then((res) => {
         if (res.status === 200) {
           setIsLoading(true);
@@ -36,7 +35,9 @@ const Restaurant = () => {
         console.log(err);
       });
     axios
-      .get(`http://localhost:4000/restaurant/${id}/menu`)
+      .get(`http://localhost:4000/restaurant/${id}/menu`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           setMenuItems(res.data);
@@ -45,7 +46,7 @@ const Restaurant = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   const [sortBy, setSortBy] = useState("Sort By:");
 
@@ -68,12 +69,6 @@ const Restaurant = () => {
 
   return (
     <div className="h-screen w-full bg-top bg-no-repeat">
-      <Preloader>
-        <span>Loading</span>
-        <span>.</span>
-        <span>.</span>
-        <span>.</span>
-      </Preloader>
       <Navbar />
       {isLoading ? (
         "Loading..."

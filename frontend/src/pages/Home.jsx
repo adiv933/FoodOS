@@ -1,26 +1,38 @@
 import Navbar from "../components/Navbar";
 import HeroImageAutoplay from "../components/HeroImageAutoplay";
 import HeroResto from "../components/HeroResto";
-import Preloader from "../components/Preloader";
 import Footer from "../components/Footer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router";
 
 function Home() {
+  const navigate = useNavigate();
+  const [restaurants, setRestaurants] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    axios
+      .get(`http://localhost:4000/home`, { withCredentials: true })
+      .then((res) => {
+        setIsLoading(true);
+        if (res.status === 200) {
+          setRestaurants(res.data);
+          setIsLoading(false);
+        }
+      })
+      .catch((err) => {
+        navigate("/login");
+        console.log(err);
+      });
+  }, [navigate]);
+
   return (
     <div className="h-screen w-full bg-top bg-no-repeat">
-      <Preloader>
-        <span>FOODOS</span>
-        <span>|</span>
-        <span>Delights</span>
-        <span>Delivered</span>
-      </Preloader>
       <Navbar />
       <div className="mx-auto w-[90%]">
         <HeroImageAutoplay />
-        <HeroResto />
+        <HeroResto restaurants={restaurants} isLoading={isLoading} />
       </div>
       <Footer />
     </div>

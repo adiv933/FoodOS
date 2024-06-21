@@ -4,7 +4,7 @@ function Register() {
       <h1 className="mb-2 text-center text-3xl">Register</h1>
 
       <form
-        action="http://localhost:4000/register"
+        action="http://localhost:4000/auth/register"
         method="POST"
         className="mx-auto w-full max-w-sm"
       >

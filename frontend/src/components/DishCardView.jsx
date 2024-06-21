@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import burger from "../../public/assets/loginCarousal/burger.jpg";
-import dosa from "../../public/assets/loginCarousal/dosa.jpg";
-import momos from "../../public/assets/loginCarousal/momos.jpg";
-import pavbhaji from "../../public/assets/loginCarousal/pavbhaji.jpg";
-import paneer from "../../public/assets/loginCarousal/paneer.jpg";
-import cholabhatura from "../../public/assets/loginCarousal/cholabhatura.jpg";
+import burger from "/assets/loginCarousal/burger.jpg";
+import dosa from "/assets/loginCarousal/dosa.jpg";
+import momos from "/assets/loginCarousal/momos.jpg";
+import pavbhaji from "/assets/loginCarousal/pavbhaji.jpg";
+import paneer from "/assets/loginCarousal/paneer.jpg";
+import cholabhatura from "/assets/loginCarousal/cholabhatura.jpg";
 import { useState, useEffect } from "react";
 
 const dishes = [
@@ -48,16 +48,16 @@ const dishes = [
 
 const DishCard = ({ dishName, dishOneliner, dishImg }) => {
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <img
-        className="w-full h-full object-cover"
+        className="h-full w-full object-cover"
         src={dishImg}
         alt={dishName}
         style={{ width: "100%", height: "100%" }}
       />
       <div className="absolute inset-0 flex flex-col-reverse items-end">
-        <div className="w-full bg-gradient-to-b from-transparent to-black text-white p-4">
-          <h2 className="text-3xl font-bold mx-6">{dishName}</h2>
+        <div className="w-full bg-gradient-to-b from-transparent to-black p-4 text-white">
+          <h2 className="mx-6 text-3xl font-bold">{dishName}</h2>
           <p className="text-md mx-6 mb-8">{dishOneliner}</p>
         </div>
       </div>
@@ -77,7 +77,7 @@ const DishCardView = () => {
   }, []);
 
   return (
-    <div className="max-w-sm mx-auto  w-full h-full">
+    <div className="mx-auto h-full  w-full max-w-sm">
       {dishes.map((dish, index) => (
         <div
           key={index}
