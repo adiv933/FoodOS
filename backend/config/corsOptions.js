@@ -2,14 +2,13 @@ const allowedOrigins = require('./allowedOrigins');
 
 const corsOptions = {
     origin: (origin, callback) => {
-        if (!origin) return callback(null, true);
-        if (allowedOrigins.indexOf(origin) === -1) {
-            const msg = 'The CORS policy for this site does not allow access from the specified origin.' + origin;
-            return callback(new Error(msg), false);
+        if (allowedOrigins.includes(origin) || !origin) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
         }
-        return callback(null, true);
     },
-    credentials: true // Add this if you need to support credentials
-}
+    optionsSuccessStatus: 200 // Some legacy browsers choke on 204
+};
 
 module.exports = corsOptions;
