@@ -6,6 +6,7 @@ require('dotenv').config();
 const port = process.env.PORT || 4000;
 const cookieParser = require('cookie-parser');
 const verifyJWT = require('./middlewares/verifyJWT');
+const credentials = require('./middlewares/credentials');
 
 //route imports
 const homeRoute = require('./routes/home');
@@ -18,6 +19,7 @@ const adminRoute = require('./routes/admin');
 const { getQuery } = require('./dbConnection');
 
 //middlewares
+app.use(credentials)
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
