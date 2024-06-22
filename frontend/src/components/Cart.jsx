@@ -63,7 +63,7 @@ export default function Cart({
     setOpen(true);
 
     try {
-      const response = await axios.post(
+      await axios.post(
         "http://localhost:4000/payment",
         {
           total_amount: totalPrice,
