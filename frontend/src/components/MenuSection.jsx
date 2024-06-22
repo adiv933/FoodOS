@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import RemoveShoppingCartOutLinedIcon from "@mui/icons-material/RemoveShoppingCartOutLined";
 import StarIcon from "@mui/icons-material/Star";
 import { yellow } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
@@ -74,7 +73,7 @@ const MenuItem = ({ item }) => {
             disabled={isAdded}
           >
             {isAdded ? (
-              <RemoveShoppingCartOutLinedIcon />
+              <i className="ri-shopping-cart-2-fill"></i>
             ) : (
               <AddShoppingCartIcon />
             )}
