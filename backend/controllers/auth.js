@@ -5,6 +5,7 @@ const random = () => { return Math.floor(Math.random() * 89999) + 10000 };
 require('dotenv').config();
 const jwt = require('jsonwebtoken');
 const { getOrderId } = require('./order_id');
+const base_url = process.env.BASE_CLIENT_URL || 'http://localhost:5173'
 
 const handleUserRegister = async (req, res) => {
     const id = uuidv4();
@@ -35,7 +36,7 @@ const handleUserRegister = async (req, res) => {
         // return res.send("success");
         // res.status(200).json({ message: 'Registration successfully' });
         //TODO redirect to login page
-        return res.redirect(`https://food-os.vercel.app/login`);
+        return res.redirect(`${base_url}/login`);
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal server error' });
@@ -63,7 +64,7 @@ const handleUserLogin = async (req, res) => {
         //     message: 'Logged in successfully',
         //     "token": token
         // });
-        return res.redirect(`https://food-os.vercel.app/home`);
+        return res.redirect(`${base_url}/home`);
 
 
     } catch (err) {
@@ -102,7 +103,7 @@ const handleUserLogout = async (req, res) => {
         console.log("Error ", err)
     }
     res.cookie('auth-token', "", { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-    res.redirect(`https://food-os.vercel.app/login`);
+    res.redirect(`${base_url}/login`);
 }
 
 module.exports = {
