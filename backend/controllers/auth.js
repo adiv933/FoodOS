@@ -64,7 +64,7 @@ const handleUserLogin = async (req, res) => {
         //     message: 'Logged in successfully',
         //     "token": token
         // });
-        return res.redirect(`${base_url}/home`);
+        return res.redirect(`${base_url}/`);
 
 
     } catch (err) {
