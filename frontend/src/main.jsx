@@ -6,7 +6,7 @@ import "./index.css";
 import "remixicon/fonts/remixicon.css";
 import { disableReactDevTools } from "@fvilers/disable-react-devtools";
 
-if (import.meta.env.MODE === "production") {
+if (import.meta.env.VITE_MODE === "production") {
   disableReactDevTools();
 }
 

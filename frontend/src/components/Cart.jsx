@@ -64,7 +64,7 @@ export default function Cart({
 
     try {
       await axios.post(
-        "http://localhost:4000/payment",
+        `${import.meta.env.VITE_BASE_SERVER_URL}/payment`,
         {
           total_amount: totalPrice,
         },

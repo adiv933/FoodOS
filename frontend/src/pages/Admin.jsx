@@ -33,7 +33,13 @@ function Admin() {
               <button
                 onClick={() => {
                   axios
-                    .post("http://localhost:4000/logout")
+                    .post(
+                      `${import.meta.env.VITE_BASE_SERVER_URL}/logout`,
+                      {},
+                      {
+                        withCredentials: true,
+                      },
+                    )
                     .then((res) => console.log(res))
                     .catch((err) => {
                       console.log(err);
@@ -54,7 +60,7 @@ function Admin() {
             <h1 className="mb-2 text-center text-3xl">Add restaurant</h1>
 
             <form
-              action="http://localhost:4000/admin/add/restaurant"
+              action={`${import.meta.env.VITE_BASE_SERVER_URL}/admin/add/restaurant`}
               method="POST"
               className="mx-auto w-full max-w-sm"
             >

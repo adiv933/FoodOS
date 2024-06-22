@@ -30,7 +30,7 @@ const MenuItem = ({ item }) => {
     setIsAdded(true);
     axios
       .post(
-        "http://localhost:4000/order/addtocart",
+        `${import.meta.env.VITE_BASE_SERVER_URL}/order/addtocart`,
         { item },
         {
           withCredentials: true,

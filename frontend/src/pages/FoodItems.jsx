@@ -14,9 +14,12 @@ export default function FoodItems() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/restaurant/search/${desiredDishName}`, {
-        withCredentials: true,
-      })
+      .get(
+        `${import.meta.env.VITE_BASE_SERVER_URL}/restaurant/search/${desiredDishName}`,
+        {
+          withCredentials: true,
+        },
+      )
       .then((res) => {
         if (res.status === 200) {
           // console.log(res);

@@ -16,7 +16,9 @@ const Checkout = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/profile`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/profile`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           // setUserData(res.data[0]);
@@ -30,7 +32,9 @@ const Checkout = () => {
         console.log(err);
       });
     axios
-      .get("http://localhost:4000/order/checkout", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/order/checkout`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           // console.log(res);

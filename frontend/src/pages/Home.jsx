@@ -13,7 +13,9 @@ function Home() {
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
-      .get(`http://localhost:4000/home`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/home`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setIsLoading(true);
         if (res.status === 200) {

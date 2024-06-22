@@ -4,7 +4,7 @@ function Login() {
       <h1 className="mb-2 text-center text-3xl">Login</h1>
 
       <form
-        action="http://localhost:4000/auth/login"
+        action={`${import.meta.env.VITE_BASE_SERVER_URL}/auth/login`}
         method="POST"
         className="mx-auto w-full max-w-sm"
       >

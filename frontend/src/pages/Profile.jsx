@@ -14,7 +14,7 @@ function OrderList({ orderData }) {
     // console.log(orderData);
     setOpenModalIndex(index);
     axios
-      .get(`http://localhost:4000/order/orderDetails/${id}`, {
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/order/orderDetails/${id}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -111,7 +111,9 @@ export default function Profile() {
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
-      .get(`http://localhost:4000/profile`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/profile`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           const { USER_ID, NAME, MOBILE_NUMBER, ADDRESS, IMG_SRC } =
@@ -139,7 +141,7 @@ export default function Profile() {
     e.preventDefault();
     axios
       .post(
-        "http://localhost:4000/auth/logout",
+        `${import.meta.env.VITE_BASE_SERVER_URL}/auth/logout`,
         { userID: userID },
         {
           withCredentials: true,
@@ -157,7 +159,9 @@ export default function Profile() {
   const handleOrderClick = () => {
     handleTabChange("orderHistory");
     axios
-      .get("http://localhost:4000/order/allOrders", { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/order/allOrders`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           setOrderData(res.data);
@@ -234,7 +238,7 @@ export default function Profile() {
               {activeTab === "profile" && (
                 <form
                   className=" mx-auto mb-4  h-full rounded bg-white px-8 pb-8 pt-6"
-                  action="http://localhost:4000/profile"
+                  action={`${import.meta.env.VITE_BASE_SERVER_URL}/profile`}
                   method="POST"
                 >
                   <div className="flex h-full w-full flex-wrap">

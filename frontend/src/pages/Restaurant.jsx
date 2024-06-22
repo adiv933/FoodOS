@@ -23,7 +23,9 @@ const Restaurant = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     axios
-      .get(`http://localhost:4000/restaurant/${id}`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/restaurant/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           setIsLoading(true);
@@ -35,7 +37,7 @@ const Restaurant = () => {
         console.log(err);
       });
     axios
-      .get(`http://localhost:4000/restaurant/${id}/menu`, {
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/restaurant/${id}/menu`, {
         withCredentials: true,
       })
       .then((res) => {
