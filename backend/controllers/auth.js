@@ -59,7 +59,7 @@ const handleUserLogin = async (req, res) => {
         if (!validPassword) return res.status(400).json({ message: 'Mobile number or password is incorrect' });
 
         const token = jwt.sign({ id: user.USER_ID, name: user.NAME }, process.env.TOKEN_SECRET, { expiresIn: '1h' });
-        res.cookie('auth-token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+        res.cookie('auth-token', token, { httpOnly: true, secure: true, sameSite: 'None' });
         // res.status(200).json({
         //     message: 'Logged in successfully',
         //     "token": token
@@ -102,7 +102,7 @@ const handleUserLogout = async (req, res) => {
     } catch (err) {
         console.log("Error ", err)
     }
-    res.cookie('auth-token', "", { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
+    res.cookie('auth-token', "", { httpOnly: true, secure: true, sameSite: 'None' });
     res.redirect(`${base_url}/login`);
 }
 
