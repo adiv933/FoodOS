@@ -35,7 +35,7 @@ const handleUserRegister = async (req, res) => {
         // return res.send("success");
         // res.status(200).json({ message: 'Registration successfully' });
         //TODO redirect to login page
-        return res.redirect(`${process.env.BASE_CLIENT_URL}/login`);
+        return res.redirect(`https://food-os.vercel.app/login`);
     } catch (err) {
         console.log(err);
         res.status(500).json({ message: 'Internal server error' });
@@ -63,7 +63,7 @@ const handleUserLogin = async (req, res) => {
         //     message: 'Logged in successfully',
         //     "token": token
         // });
-        return res.redirect(`${process.env.BASE_CLIENT_URL}/home`);
+        return res.redirect(`https://food-os.vercel.app/home`);
 
 
     } catch (err) {
@@ -102,7 +102,7 @@ const handleUserLogout = async (req, res) => {
         console.log("Error ", err)
     }
     res.cookie('auth-token', "", { httpOnly: true, secure: process.env.NODE_ENV === 'production' });
-    res.redirect(`${process.env.BASE_CLIENT_URL}/login`);
+    res.redirect(`https://food-os.vercel.app/login`);
 }
 
 module.exports = {

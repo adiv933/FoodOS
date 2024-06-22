@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
             // console.log("User updated", result)
             // console.log(`User details updated with\nName: ${name}\nMobile:${mobile}\nAddress:${address}\n`);
 
-            return res.redirect(`${process.env.BASE_CLIENT_URL}/profile`);
+            return res.redirect(`https://food-os.vercel.app/profile`);
 
         } catch (err) {
             console.log(err);
