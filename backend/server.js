@@ -36,11 +36,10 @@ app.get('/test', async (req, res) => {
 })
 app.use(verifyJWT);
 
-//! TODO find how a user would place an order and how will order_id be generated
 app.use('/home', homeRoute);
 app.use('/restaurant', restaurantRoute);
 app.use('/profile', profileRoute);
-app.use('/payment', paymentRoute);   //TODO maintain a order ID mapped to session ID
-app.use('/order', orderRoute);       //TODO need for SID
+app.use('/payment', paymentRoute);
+app.use('/order', orderRoute);
 app.use('/admin', adminRoute);
 app.use('/', homeRoute);
