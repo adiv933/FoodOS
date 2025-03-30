@@ -63,6 +63,7 @@ app.get('/restaurant/:id/menu', async (req, res) => {
 app.get('/profile', async (req, res) => {
     try {
         const query = 'SELECT * FROM users WHERE user_id = $1';
+        console.log('currentSID', currentSID)
         const binds = [currentSID];
         const result = await getQuery(query, binds);
         return res.json(result);
@@ -82,6 +83,7 @@ app.get('/checkout', async (req, res) => {
         `;
         const binds = [order_id];
         const result = await getQuery(query, binds);
+        console.log('order_id', order_id)
         return res.json(result);
     } catch (err) {
         console.error(err);
@@ -211,7 +213,7 @@ app.post('/register', async (req, res) => {
 app.post('/login', async (req, res) => {
     const name = req.body.name;
     const password = req.body.password;
-    order_id = Math.floor(Math.random() * 1000000);
+    order_id = random();
     order_timestamp = new Date().toISOString();
     try {
         const query = `SELECT * FROM users WHERE name = $1`;
@@ -222,7 +224,7 @@ app.post('/login', async (req, res) => {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        currentSID = result1[0].user_id;
+        currentSID = uuidv4();
         const fetched_password = result1[0].password;
 
         const isValid = await bcrypt.compare(password, fetched_password);

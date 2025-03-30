@@ -16,32 +16,22 @@ const Checkout = () => {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/profile`, {
-        withCredentials: true,
-      })
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/profile`)
       .then((res) => {
         if (res.status === 200) {
-          // setUserData(res.data[0]);
-          const { NAME, MOBILE_NUMBER, ADDRESS } = res.data[0];
-          setName(NAME);
-          setMobile(MOBILE_NUMBER);
-          setAddress(ADDRESS);
+          const { name, mobile_number, address } = res.data;
+          setName(name);
+          setMobile(mobile_number);
+          setAddress(address);
         }
       })
       .catch((err) => {
         console.log(err);
       });
     axios
-<<<<<<< HEAD
-      .get("http://localhost:4000/order/checkout")
-=======
-      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/order/checkout`, {
-        withCredentials: true,
-      })
->>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/checkout`)
       .then((res) => {
         if (res.status === 200) {
-          // console.log(res);
           setItems(res.data);
           setIsLoading(false);
         }
@@ -62,7 +52,6 @@ const Checkout = () => {
           </div>
         ) : (
           <>
-            {/* Left Section */}
             <div className="bg-blur2 w-[60%] p-4 ">
               <div className="mb-4">
                 <h2 className="mb-2 text-lg font-semibold">Personal Details</h2>
@@ -101,23 +90,11 @@ const Checkout = () => {
                   <option value="GPay">GPay</option>
                   <option value="PayTM">PayTM</option>
                   <option value="Credit Card">Credit/Debit Card</option>
-                  {/* Add other payment options */}
                 </select>
               </div>
             </div>
 
-            {/* Right Section */}
             <div className="bg-blur1 w-[40%] overflow-y-auto overflow-x-hidden p-4">
-<<<<<<< HEAD
-              <Cart
-                name={name}
-                mobile={mobile}
-                address={address}
-                paymentOption={paymentOption}
-                items={items}
-                setItems={setItems}
-              />
-=======
               {isLoading ? (
                 <div className="flex h-full items-center justify-center">
                   <CircularProgress color="warning" size={100} />
@@ -132,7 +109,6 @@ const Checkout = () => {
                   setItems={setItems}
                 />
               )}
->>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
             </div>
           </>
         )}

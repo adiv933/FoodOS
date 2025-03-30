@@ -5,11 +5,8 @@ import SearchBar from "./SearchBar";
 import Tooltip from "@mui/material/Tooltip";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import PersonIcon from "@mui/icons-material/Person";
-import { useEffect } from "react";
 
 export default function Navbar() {
-
-
   const location = useLocation();
   const isCheckoutPage = location.pathname === "/checkout";
   const isProfilePage = location.pathname === "/profile";
@@ -38,12 +35,14 @@ export default function Navbar() {
               onClick={() => {
                 navigate("/checkout");
               }}
-              className={`p-3 bg-${isCheckoutPage ? "amber-500" : "amber-400"
-                } text-white rounded-md 
-            ${isCheckoutPage
-                  ? ""
-                  : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
-                }`}
+              className={`p-3 bg-${
+                isCheckoutPage ? "amber-500" : "amber-400"
+              } text-white rounded-md 
+            ${
+              isCheckoutPage
+                ? ""
+                : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
+            }`}
             >
               <ShoppingCartIcon />
             </button>
@@ -60,12 +59,14 @@ export default function Navbar() {
               onClick={() => {
                 navigate("/profile");
               }}
-              className={`p-3 bg-${isProfilePage ? "amber-500" : "amber-400"
-                } text-white rounded-md 
-            ${isProfilePage
-                  ? ""
-                  : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
-                }`}
+              className={`p-3 bg-${
+                isProfilePage ? "amber-500" : "amber-400"
+              } text-white rounded-md 
+            ${
+              isProfilePage
+                ? ""
+                : "hover:bg-amber-500 hover:-translate-y-1 hover:shadow-lg duration-100"
+            }`}
             >
               <PersonIcon />
             </button>
@@ -73,6 +74,5 @@ export default function Navbar() {
         </div>
       </div>
     </div>
-  )
+  );
 }
-

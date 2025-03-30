@@ -11,11 +11,9 @@ if (import.meta.env.VITE_MODE === "production") {
 }
 
 ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
     <BrowserRouter>
       <App />
     </BrowserRouter>
-<<<<<<< HEAD
-=======
   </React.StrictMode>,
->>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
 );

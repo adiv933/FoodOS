@@ -46,8 +46,7 @@ const dishes = [
   },
 ];
 
-const DishCard = ({ dishName = "bsjdhcskj", dishOneliner, dishImg, children }) => {
-
+const DishCard = ({ dishName, dishOneliner, dishImg }) => {
   return (
     <div className="relative h-full w-full">
       <img
@@ -86,9 +85,11 @@ const DishCardView = () => {
             index === activeIndex ? "opacity-100" : "opacity-0"
           }`}
         >
-          <DishCard>
-
-          </DishCard>
+          <DishCard
+            dishName={dish.dishName}
+            dishOneliner={dish.dishOneliner}
+            dishImg={dish.dishImg}
+          />
         </div>
       ))}
     </div>

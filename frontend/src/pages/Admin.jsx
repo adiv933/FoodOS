@@ -33,9 +33,6 @@ function Admin() {
               <button
                 onClick={() => {
                   axios
-<<<<<<< HEAD
-                    .post("http://localhost:4000/auth/logout")
-=======
                     .post(
                       `${import.meta.env.VITE_BASE_SERVER_URL}/logout`,
                       {},
@@ -43,7 +40,6 @@ function Admin() {
                         withCredentials: true,
                       },
                     )
->>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
                     .then((res) => console.log(res))
                     .catch((err) => {
                       console.log(err);

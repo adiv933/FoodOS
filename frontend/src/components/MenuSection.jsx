@@ -28,22 +28,13 @@ const MenuItem = ({ item }) => {
     // console.log(item);
     setIsAdded(true);
     axios
-<<<<<<< HEAD
-      .post("http://localhost:4000/order/addtocart", { item })
-      .then((response) => {
-        console.log("SUCCESS!!! Response from server:", response);
-=======
       .post(
-        `${import.meta.env.VITE_BASE_SERVER_URL}/order/addtocart`,
+        `${import.meta.env.VITE_BASE_SERVER_URL}/addtocart`,
         { item },
-        {
-          withCredentials: true,
-        },
       )
-      .then(() => {
-        // console.log(`Added ${item.NAME} to cart`);
+      .then((res) => {
+        console.log(`Added ${item.name} to cart`, res);
         // console.log("SUCCESS!!! Response from server:", response);
->>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
@@ -53,28 +44,27 @@ const MenuItem = ({ item }) => {
   return (
     <div className="mb-4 flex h-32 items-center rounded border-2 px-4 ">
       <img
-        src={item.IMG_SRC}
-        alt={item.NAME}
+        src={item.img_src}
+        alt={item.name}
         className="mr-8 h-20 w-20 transform rounded object-cover object-center transition-transform duration-300 ease-in-out hover:scale-110 "
       />
       <div className="flex-grow">
-        <h3 className="text-lg font-semibold">{item.NAME}</h3>
+        <h3 className="text-lg font-semibold">{item.name}</h3>
         <p className="flex gap-1 text-gray-600">
-          Rating: {item.RATING}
+          Rating: {item.rating}
           <StarIcon sx={{ color: yellow[700] }} />
         </p>
       </div>
       <div className="flex items-center">
         <p className="mr-4 text-xl font-semibold text-gray-700">
-          ₹{item.PRICE}{" "}
+          ₹{item.price}{" "}
         </p>
         <Tooltip title={isAdded ? "" : "Add to cart"}>
           <button
-            className={`rounded bg-amber-500 px-4 py-2 font-bold text-white hover:bg-amber-700  ${
-              isAdded
+            className={`rounded bg-amber-500 px-4 py-2 font-bold text-white hover:bg-amber-700  ${isAdded
                 ? "cursor-not-allowed opacity-50"
                 : "duration-200 hover:-translate-y-1"
-            }`}
+              }`}
             onClick={handleClick}
             disabled={isAdded}
           >
@@ -89,7 +79,7 @@ const MenuItem = ({ item }) => {
           open={open}
           autoHideDuration={2000}
           onClose={handleClose}
-          message={`${item.NAME} was added to Cart`}
+          message={`${item.name} was added to Cart`}
         />
       </div>
     </div>
