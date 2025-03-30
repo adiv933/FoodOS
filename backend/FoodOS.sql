@@ -14,7 +14,8 @@ CREATE TABLE Restaurants (
     address VARCHAR(255),
     contact_number VARCHAR(50),
     delivery_time VARCHAR(30),
-    rating DECIMAL(3, 1)
+    rating DECIMAL(3, 1),
+    img_src VARCHAR(255)
 );
 
 -- Menu Table
@@ -120,8 +121,6 @@ VALUES (11, 'Curry Kingdom', '11 Curry Corner, Manipal, Karnataka, India', '+91 
 INSERT INTO Restaurants (restaurant_id, name, address, contact_number, rating, delivery_time) 
 VALUES (12, 'Naan Nook', '12 Naan Street, Manipal, Karnataka, India', '+91 7766889955', 4.5, '30-40 minutes');
 
-ALTER TABLE Restaurants
-ADD img_src VARCHAR(255);
 
 UPDATE Restaurants
 SET img_src = CASE 

@@ -49,8 +49,8 @@ const RestoCardView = ({ restaurants, isLoading }) => {
 export default function HeroResto() {
   const [restaurants, setRestaurants] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  
   useEffect(() => {
-    window.scrollTo(0, 0);
     axios
       .get(`http://localhost:4000/home`)
       .then((res) => {
