@@ -330,42 +330,12 @@ app.post('/admin/add/restaurant', async (req, res) => {
 });
 
 
-//* requests using PL/SQL
-
-async function getUserPassword() {
-    const connection = await oracledb.getConnection(dbConfig);
-    const sql = `begin :les:= getUserPassword(username); end;`;
-
-    const bindVars = {
-        les: {
-            type: oracledb.STRING,
-            dir: oracledb.BIND_OUT,
-            maxSize: 60
-        }
-    };
-
-    const options = {
-        bindDefs: bindVars,
-        autoCommit: true
-    };
-
-    connection.execute(sql, [], options)
-        .then(result => {
-            console.log("Password: ", result.outBinds);
-            console.log("User is valid:", isValid);
-            console.log("Order table initiated : ", order_id);
-        })
-        .catch(err => {
-            console.error(err);
-        });
-}
-
 app.get('/user/login', async (req, res) => {
     const result = await getUserPassword(req.body.USERNAME);
 
     //! if user is admin code here
     if (name === 'admin' && password === 'admin') {
-        return res.redirect('http://localhost:5173/admin/add/restaurant');
+        return res.json({ "message": "Admin access granted" });
     }
 
     const isValid = await compare(password, fetched_password)
@@ -382,4 +352,3 @@ app.get('/user/login', async (req, res) => {
         return res.json([]);
     }
 })
-

@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
-import RemoveShoppingCartOutLinedIcon from "@mui/icons-material/RemoveShoppingCartOutLined";
 import StarIcon from "@mui/icons-material/Star";
 import { yellow } from "@mui/material/colors";
 import Tooltip from "@mui/material/Tooltip";
@@ -26,12 +25,25 @@ const MenuItem = ({ item }) => {
   };
 
   const handleAddToCart = () => {
+    // console.log(item);
     setIsAdded(true);
-    console.log(`Added ${item.NAME} to cart`);
     axios
+<<<<<<< HEAD
       .post("http://localhost:4000/order/addtocart", { item })
       .then((response) => {
         console.log("SUCCESS!!! Response from server:", response);
+=======
+      .post(
+        `${import.meta.env.VITE_BASE_SERVER_URL}/order/addtocart`,
+        { item },
+        {
+          withCredentials: true,
+        },
+      )
+      .then(() => {
+        // console.log(`Added ${item.NAME} to cart`);
+        // console.log("SUCCESS!!! Response from server:", response);
+>>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
       })
       .catch((error) => {
         console.error("Error adding to cart:", error);
@@ -67,7 +79,7 @@ const MenuItem = ({ item }) => {
             disabled={isAdded}
           >
             {isAdded ? (
-              <RemoveShoppingCartOutLinedIcon />
+              <i className="ri-shopping-cart-2-fill"></i>
             ) : (
               <AddShoppingCartIcon />
             )}
@@ -91,7 +103,7 @@ const MenuSection = ({ menuItems, children }) => {
       {menuItems ? (
         menuItems.map((item, index) => <MenuItem key={index} item={item} />)
       ) : (
-        <h1 className="text-black">Menu not added</h1>
+        <h1 className="text-black">Menu not added yet.</h1>
       )}
     </div>
   );

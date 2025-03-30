@@ -1,13 +1,13 @@
 /* eslint-disable react/no-unescaped-entities */
-import Biryani_2 from "../../public/assets/heroCarousal/Biryani_2.png";
-import Cakes from "../../public/assets/heroCarousal/Cakes.png";
-import North_Indian_4 from "../../public/assets/heroCarousal/North_Indian_4.png";
-import South_Indian_4 from "../../public/assets/heroCarousal/South_Indian_4.png";
-import Omelette from "../../public/assets/heroCarousal/Omelette.png";
-import Pizza from "../../public/assets/heroCarousal/Pizza.png";
-import Pasta from "../../public/assets/heroCarousal/Pasta.png";
-import Chinese from "../../public/assets/heroCarousal/Chinese.png";
-import Paratha from "../../public/assets/heroCarousal/Paratha.png";
+import Biryani_2 from "/assets/heroCarousal/Biryani_2.png";
+import Cakes from "/assets/heroCarousal/Cakes.png";
+import North_Indian_4 from "/assets/heroCarousal/North_Indian_4.png";
+import South_Indian_4 from "/assets/heroCarousal/South_Indian_4.png";
+import Omelette from "/assets/heroCarousal/Omelette.png";
+import Pizza from "/assets/heroCarousal/Pizza.png";
+import Pasta from "/assets/heroCarousal/Pasta.png";
+import Chinese from "/assets/heroCarousal/Chinese.png";
+import Paratha from "/assets/heroCarousal/Paratha.png";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
 

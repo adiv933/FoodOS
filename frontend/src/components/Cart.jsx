@@ -30,8 +30,8 @@ export default function Cart({
       items.map((item) =>
         item.ORDER_DETAIL_ID === id
           ? { ...item, QUANTITY: item.QUANTITY + 1 }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -40,8 +40,8 @@ export default function Cart({
       items.map((item) =>
         item.ORDER_DETAIL_ID === id
           ? { ...item, QUANTITY: item.QUANTITY - 1 > 0 ? item.QUANTITY - 1 : 1 }
-          : item
-      )
+          : item,
+      ),
     );
   };
 
@@ -55,7 +55,7 @@ export default function Cart({
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.SUBTOTAL_AMOUNT * item.QUANTITY,
-    0
+    0,
   );
 
   const handlePayment = async () => {
@@ -63,15 +63,21 @@ export default function Cart({
     setOpen(true);
 
     try {
-      const response = await axios.post("http://localhost:4000/payment", {
-        total_amount: totalPrice,
-      });
+      await axios.post(
+        `${import.meta.env.VITE_BASE_SERVER_URL}/payment`,
+        {
+          total_amount: totalPrice,
+        },
+        {
+          withCredentials: true,
+        },
+      );
 
-      if (response.data && Object.keys(response.data).length > 0) {
-        console.log("payment successful:", response.data);
-      } else {
-        console.log("payment unsuccessful");
-      }
+      // if (response.data && Object.keys(response.data).length > 0) {
+      //   console.log("payment successful:", response.data);
+      // } else {
+      //   console.log("payment unsuccessful");
+      // }
     } catch (error) {
       console.error("Error during handling payment:", error);
     }
@@ -79,16 +85,16 @@ export default function Cart({
     setTimeout(() => {
       setOpen(false);
       setPaymentSuccessfulAlert(true);
-    }, 3000);
+    }, 2000);
     setTimeout(() => {
       navigate("/home");
-    }, 5000);
+    }, 3000);
   };
 
   return (
     <div className="h-fit">
       {paymentSuccessfulAlert && (
-        <div className="absolute bottom-0 w-full mb-4">
+        <div className="absolute bottom-0 mb-4 w-full">
           <Alert
             icon={<CheckCircleOutlineIcon fontSize="inherit" />}
             severity="success"
@@ -99,18 +105,18 @@ export default function Cart({
         </div>
       )}
       <div className="mb-8 ">
-        <h2 className="text-xl font-semibold mb-2">Food Items</h2>
+        <h2 className="mb-2 text-xl font-semibold">Food Items</h2>
         {items.length ? (
           items.map((item) => (
             <div
               key={item.ORDER_DETAIL_ID}
-              className="flex justify-between items-center mb-2"
+              className="mb-2 flex items-center justify-between"
             >
-              <div className="w-2/3 border-b-2 border-black mb-2 p-1 mx-4">
+              <div className="mx-4 mb-2 w-2/3 border-b-2 border-black p-1">
                 <span className="font-semibold">{item.NAME}</span>
                 <span className="mx-2">(₹{item.SUBTOTAL_AMOUNT})</span>
               </div>
-              <div className="flex bg-amber-200 rounded gap-3 w-16 p-2">
+              <div className="flex w-16 gap-3 rounded bg-amber-200 p-2">
                 <button onClick={() => decreaseQuantity(item.ORDER_DETAIL_ID)}>
                   -
                 </button>
@@ -134,15 +140,15 @@ export default function Cart({
             <h1 className="my-8 text-center">Add some food to you cart!!!</h1>
             <button
               onClick={() => navigate("/home")}
-              className="bg-amber-500 hover:bg-amber-600 text-white px-12 py-3 rounded w-full hover:-translate-y-1 hover:shadow-lg duration-100"
+              className="w-full rounded bg-amber-500 px-12 py-3 text-white duration-100 hover:-translate-y-1 hover:bg-amber-600 hover:shadow-lg"
             >
               Start adding
             </button>
           </>
         )}
       </div>
-      <div className="p-2 mb-8 bg-white rounded">
-        <h2 className="text-xl font-semibold mb-2 ">Final Summary</h2>
+      <div className="mb-8 rounded bg-white p-2">
+        <h2 className="mb-2 text-xl font-semibold ">Final Summary</h2>
         {name && (
           <p>
             <span className="font-semibold">Name:</span> {name}
@@ -168,10 +174,10 @@ export default function Cart({
       </div>
       <button
         onClick={() => handlePayment()}
-        className={`bg-amber-500 hover:bg-amber-600 text-white px-12 py-3 rounded w-full hover:shadow-lg duration-100 ${
+        className={`w-full rounded bg-amber-500 px-12 py-3 text-white duration-100 hover:bg-amber-600 hover:shadow-lg ${
           items.length
-            ? "hover:-translate-y-1 duration-200"
-            : "opacity-50 cursor-not-allowed"
+            ? "duration-200 hover:-translate-y-1"
+            : "cursor-not-allowed opacity-50"
         }`}
       >
         Pay ₹{totalPrice}

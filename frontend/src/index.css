@@ -7,13 +7,14 @@
 }
 
 html {
-    background-image: url("../public/assets/bg-curves.png");
+    background-image: url("/assets/bg-curves.png");
     background-position: top;
     background-repeat: no-repeat;
 }
 
 .footerCurves {
-    background-image: url("../public/assets/footerCurves.svg");
+    background-image: url("/assets/footerCurves.svg");
+
 }
 
 @keyframes slide {

@@ -31,7 +31,7 @@ export default function RatingSection({ onRatingChange }) {
       ...state,
       open: false,
     });
-    console.log("Rating:", value);
+    // console.log("Rating:", value);
     onRatingChange(value);
   };
 

@@ -1,8 +1,5 @@
-import { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
 function Login() {
+<<<<<<< HEAD
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isAdmin, setIsAdmin] = useState(false);
@@ -36,39 +33,42 @@ function Login() {
       console.error("Error during login:", error);
     }
   };
+=======
+>>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
   return (
     <div>
-      <h1 className="mb-8 text-center text-3xl">
-        {isAdmin ? "Hello Admin" : "Login"}
-      </h1>
-      <form onSubmit={handleSubmit} className="mx-auto w-full max-w-sm">
-        <div className="mb-4">
-          <label htmlFor="name" className="block text-gray-700">
-            Name
+      <h1 className="mb-2 text-center text-3xl">Login</h1>
+
+      <form
+        action={`${import.meta.env.VITE_BASE_SERVER_URL}/auth/login`}
+        method="POST"
+        className="mx-auto w-full max-w-sm"
+      >
+        <div className="mb-2">
+          <label htmlFor="mobileNumber" className="block text-gray-700">
+            Mobile Number
           </label>
           <input
             type="text"
-            name="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="mobileNumber"
+            pattern="[0-9]{10}"
             required
-            className="mt-1 w-full rounded-md border p-2"
+            className="mt-1 w-full appearance-none rounded-md border p-2"
           />
         </div>
-        <div className="mb-4">
+        <div className="mb-2">
           <label htmlFor="password" className="block text-gray-700">
             Password
           </label>
           <input
             type="password"
             name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
             required
             className="mt-1 w-full rounded-md border p-2"
           />
         </div>
-        <div className="my-8">
+
+        <div className="my-4">
           <button
             type="submit"
             className="w-full rounded-md bg-amber-500 px-4 py-2 text-white hover:bg-amber-600 focus:bg-amber-600 focus:outline-none"
@@ -76,9 +76,6 @@ function Login() {
             Login
           </button>
         </div>
-        <button className="text-red-500 underline" onClick={handleAdminLogin}>
-          Admin login
-        </button>
       </form>
     </div>
   );

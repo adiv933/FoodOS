@@ -12,10 +12,13 @@ const Checkout = () => {
   const [address, setAddress] = useState("");
   const [paymentOption, setPaymentOption] = useState("Cash on Delivery");
   const [items, setItems] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:4000/profile`)
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/profile`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           // setUserData(res.data[0]);
@@ -29,11 +32,18 @@ const Checkout = () => {
         console.log(err);
       });
     axios
+<<<<<<< HEAD
       .get("http://localhost:4000/order/checkout")
+=======
+      .get(`${import.meta.env.VITE_BASE_SERVER_URL}/order/checkout`, {
+        withCredentials: true,
+      })
+>>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
       .then((res) => {
         if (res.status === 200) {
           // console.log(res);
           setItems(res.data);
+          setIsLoading(false);
         }
       })
       .catch((err) => {
@@ -98,6 +108,7 @@ const Checkout = () => {
 
             {/* Right Section */}
             <div className="bg-blur1 w-[40%] overflow-y-auto overflow-x-hidden p-4">
+<<<<<<< HEAD
               <Cart
                 name={name}
                 mobile={mobile}
@@ -106,6 +117,22 @@ const Checkout = () => {
                 items={items}
                 setItems={setItems}
               />
+=======
+              {isLoading ? (
+                <div className="flex h-full items-center justify-center">
+                  <CircularProgress color="warning" size={100} />
+                </div>
+              ) : (
+                <Cart
+                  name={name}
+                  mobile={mobile}
+                  address={address}
+                  paymentOption={paymentOption}
+                  items={items}
+                  setItems={setItems}
+                />
+              )}
+>>>>>>> b2b42a57e1ced389e4e9999761f4c1656034eb71
             </div>
           </>
         )}
